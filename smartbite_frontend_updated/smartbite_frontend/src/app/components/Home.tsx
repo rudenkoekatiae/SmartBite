@@ -80,7 +80,7 @@ interface MealDetailModalProps {
   onClose: () => void;
 }
 
-const DEFAULT_COOK: CookInfo = { method: 'Підготувати за необхідністю', time_min: 5 };
+const DEFAULT_COOK: CookInfo = { method: 'Prepare as needed', time_min: 5 };
 
 const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, ingredientDetails, onClose }) => {
   const cookTime = ingredientDetails.length > 0
@@ -126,7 +126,7 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, i
         </div>
 
         <div className="px-4 pb-8 space-y-4">
-          {/* Макро + час */}
+          {/* Macros & time */}
           <div className="grid grid-cols-4 gap-2">
             {[
               { label: 'Kcal',  val: Math.round(meal.cal), color: 'bg-orange-100 text-orange-700' },
@@ -141,29 +141,29 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, i
             ))}
           </div>
 
-          {/* Час та ціна */}
+          {/* Time & cost */}
           <div className="flex gap-3">
             <div className="flex-1 bg-green-100 rounded-2xl p-3 flex items-center gap-2">
               <Clock size={16} className="text-green-700" />
               <div>
-                <p className="text-[9px] font-black text-green-700/50 uppercase">Час готування</p>
-                <p className="text-sm font-black text-green-900">{cookTime} хв</p>
+                <p className="text-[9px] font-black text-green-700/50 uppercase">Cook time</p>
+                <p className="text-sm font-black text-green-900">{cookTime} min</p>
               </div>
             </div>
             <div className="flex-1 bg-green-100 rounded-2xl p-3 flex items-center gap-2">
               <ShoppingBag size={16} className="text-green-700" />
               <div>
-                <p className="text-[9px] font-black text-green-700/50 uppercase">Вартість</p>
+                <p className="text-[9px] font-black text-green-700/50 uppercase">Cost</p>
                 <p className="text-sm font-black text-green-900">₴{meal.cost.toFixed(1)}</p>
               </div>
             </div>
           </div>
 
-          {/* Інгредієнти з деталями */}
+          {/* Ingredients & preparation */}
           <div>
             <div className="flex items-center gap-2 mb-3">
               <ChefHat size={16} className="text-green-700" />
-              <h3 className="text-sm font-black text-green-900">Інгредієнти та приготування</h3>
+              <h3 className="text-sm font-black text-green-900">Ingredients & preparation</h3>
             </div>
 
             {ingredientDetails.length === 0 && (
@@ -181,25 +181,25 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, i
                   <div className="flex justify-between items-start mb-1.5">
                     <div>
                       <p className="text-sm font-black text-green-900">{ing.name}</p>
-                      <p className="text-[10px] text-green-600/60 font-bold">{ing.portion_g} г</p>
+                      <p className="text-[10px] text-green-600/60 font-bold">{ing.portion_g} g</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-black text-green-800">{Math.round(ing.calories * ing.portion_g / 100)} ккал</p>
+                      <p className="text-xs font-black text-green-800">{Math.round(ing.calories * ing.portion_g / 100)} kcal</p>
                       <div className="flex items-center gap-1 justify-end mt-0.5">
                         <Clock size={10} className="text-green-500" />
-                        <p className="text-[10px] text-green-600/60">{(ing.cook_info ?? DEFAULT_COOK).time_min} хв</p>
+                        <p className="text-[10px] text-green-600/60">{(ing.cook_info ?? DEFAULT_COOK).time_min} min</p>
                       </div>
                     </div>
                   </div>
                   <p className="text-[11px] text-green-700/70 leading-relaxed">
                     {(ing.cook_info ?? DEFAULT_COOK).method}
                   </p>
-                  {/* Міні-макро рядок */}
+                  {/* Macro row */}
                   <div className="flex gap-3 mt-2">
                     {[
-                      { l: 'Б', v: Math.round(ing.proteins * ing.portion_g / 100) + 'г' },
-                      { l: 'Ж', v: Math.round(ing.fats    * ing.portion_g / 100) + 'г' },
-                      { l: 'В', v: Math.round(ing.carbs   * ing.portion_g / 100) + 'г' },
+                      { l: 'P', v: Math.round(ing.proteins * ing.portion_g / 100) + 'g' },
+                      { l: 'F', v: Math.round(ing.fats    * ing.portion_g / 100) + 'g' },
+                      { l: 'C', v: Math.round(ing.carbs   * ing.portion_g / 100) + 'g' },
                     ].map(m => (
                       <span key={m.l} className="text-[10px] text-green-600/50 font-bold">
                         {m.l}: {m.v}
@@ -368,7 +368,7 @@ export const Home = () => {
             exit={{ opacity: 0, x: -20 }}
             className="flex flex-col items-center"
           >
-            {/* Ілюстрація — кліклива */}
+            {/* Illustration — tappable */}
             <button
               onClick={() => setModalMeal(currentMeal)}
               className="w-48 h-48 bg-green-200 rounded-[2.5rem] mb-4 overflow-hidden border-4 border-white shadow-lg active:scale-95 transition-transform relative group"
@@ -378,7 +378,7 @@ export const Home = () => {
                 alt={currentMeal.name}
                 className="w-full h-full object-cover"
               />
-              {/* Підказка "Tap for details" */}
+              {/* Hint */}
               <div className="absolute inset-0 bg-black/0 group-active:bg-black/10 transition-colors rounded-[2.5rem] flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100">
                 <span className="text-[10px] font-black text-white bg-black/50 px-2 py-1 rounded-full">
                   Tap for details
@@ -468,7 +468,7 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Модалка деталей */}
+      {/* Detail modal */}
       <AnimatePresence>
         {modalMeal && (
           <MealDetailModal

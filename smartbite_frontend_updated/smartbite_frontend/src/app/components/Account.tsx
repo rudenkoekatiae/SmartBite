@@ -5,20 +5,20 @@ import { User, Ruler, Weight, Target, Wallet, UtensilsCrossed, AlertCircle } fro
 // ── Правила валідації ─────────────────────────────────────────────────────────
 
 const RULES = {
-  age:        { min: 10,    max: 120,   label: 'Вік',           unit: 'р.' },
-  height:     { min: 100,   max: 250,   label: 'Зріст',         unit: 'см' },
-  weight:     { min: 30,    max: 300,   label: 'Вага',          unit: 'кг' },
-  budget:     { min: 200,   max: 30000, label: 'Бюджет',        unit: '₴' },
-  mealsPerDay:{ min: 2,     max: 5,     label: 'Прийомів їжі',  unit: '' },
+  age:        { min: 10,    max: 120,   label: 'Age',           unit: 'y.o.' },
+  height:     { min: 100,   max: 250,   label: 'Height',        unit: 'cm' },
+  weight:     { min: 30,    max: 300,   label: 'Weight',        unit: 'kg' },
+  budget:     { min: 200,   max: 30000, label: 'Budget',        unit: '₴' },
+  mealsPerDay:{ min: 2,     max: 5,     label: 'Meals/day',     unit: '' },
 };
 
 type FieldKey = keyof typeof RULES;
 
 function validate(key: FieldKey, value: number): string | null {
   const rule = RULES[key];
-  if (!Number.isFinite(value) || value <= 0) return `Введіть число більше 0`;
-  if (value < rule.min) return `Мінімум ${rule.min} ${rule.unit}`.trim();
-  if (value > rule.max) return `Максимум ${rule.max} ${rule.unit}`.trim();
+  if (!Number.isFinite(value) || value <= 0) return `Enter a number greater than 0`;
+  if (value < rule.min) return `Min ${rule.min} ${rule.unit}`.trim();
+  if (value > rule.max) return `Max ${rule.max} ${rule.unit}`.trim();
   return null;
 }
 
@@ -186,11 +186,11 @@ export const Account = () => {
           />
         </div>
 
-        {/* Підказки для кожного поля */}
+        {/* Field hints */}
         <div className="bg-green-50 rounded-2xl p-4 space-y-1.5">
           {(Object.keys(RULES) as FieldKey[]).map(key => (
             <p key={key} className="text-[10px] text-green-700/60 font-bold">
-              {RULES[key].label}: від {RULES[key].min} до {RULES[key].max} {RULES[key].unit}
+              {RULES[key].label}: {RULES[key].min}–{RULES[key].max} {RULES[key].unit}
             </p>
           ))}
         </div>
