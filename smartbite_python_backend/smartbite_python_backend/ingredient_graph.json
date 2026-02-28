@@ -1,7 +1,7 @@
 [
   {
     "key": "oats",
-    "name": "Вівсянка",
+    "name": "Oats",
     "category": "grain",
     "calories": 68,
     "proteins": 2.4,
@@ -47,13 +47,13 @@
       "pumpkin_seeds"
     ],
     "cook_info": {
-      "method": "Залити окропом або молоком, накрити на 5 хв. Або варити 3-5 хв на середньому вогні",
+      "method": "Pour boiling water or milk, cover for 5 min. Or simmer 3–5 min over medium heat",
       "time_min": 5
     }
   },
   {
     "key": "milk",
-    "name": "Молоко",
+    "name": "Milk",
     "category": "dairy",
     "calories": 53,
     "proteins": 2.8,
@@ -95,13 +95,13 @@
       "peanut_butter"
     ],
     "cook_info": {
-      "method": "Підігріти до 60°C або використовувати холодним",
+      "method": "Warm to 60°C or use cold straight from the fridge",
       "time_min": 2
     }
   },
   {
     "key": "kefir",
-    "name": "Кефір",
+    "name": "Kefir",
     "category": "dairy",
     "calories": 40,
     "proteins": 3.4,
@@ -141,13 +141,13 @@
       "muesli"
     ],
     "cook_info": {
-      "method": "Використовувати прямо з холодильника, кімнатна температура краща",
+      "method": "Use straight from the fridge — room temperature is slightly better",
       "time_min": 1
     }
   },
   {
     "key": "yogurt",
-    "name": "Йогурт",
+    "name": "Yogurt",
     "category": "dairy",
     "calories": 98,
     "proteins": 5.0,
@@ -189,13 +189,13 @@
       "pumpkin_seeds"
     ],
     "cook_info": {
-      "method": "Використовувати охолодженим, за бажанням змішати з фруктами",
+      "method": "Use chilled; mix with fruit if desired",
       "time_min": 1
     }
   },
   {
     "key": "cottage_cheese",
-    "name": "Сир кисломолочний",
+    "name": "Cottage Cheese",
     "category": "dairy",
     "calories": 155,
     "proteins": 17.0,
@@ -241,13 +241,13 @@
       "pumpkin_seeds"
     ],
     "cook_info": {
-      "method": "Використовувати готовим, за бажанням протерти крізь сито для ніжної текстури",
+      "method": "Use as-is; press through a sieve for a smoother texture if desired",
       "time_min": 2
     }
   },
   {
     "key": "eggs",
-    "name": "Яйця",
+    "name": "Eggs",
     "category": "protein",
     "calories": 157,
     "proteins": 13.0,
@@ -292,13 +292,13 @@
       "cheese"
     ],
     "cook_info": {
-      "method": "Смажити на пательні з олією 3-4 хв, або варити 7-10 хв (круто), або 5 хв (некруто)",
+      "method": "Fry in a pan with oil 3–4 min, or boil 7–10 min (hard) / 5 min (soft)",
       "time_min": 7
     }
   },
   {
     "key": "bread",
-    "name": "Хліб",
+    "name": "Bread",
     "category": "grain",
     "calories": 233,
     "proteins": 7.0,
@@ -343,13 +343,13 @@
       "spinach"
     ],
     "cook_info": {
-      "method": "Нарізати скибками, за бажанням підсмажити у тостері 2-3 хв",
+      "method": "Slice and toast in a toaster 2–3 min if desired",
       "time_min": 3
     }
   },
   {
     "key": "chicken",
-    "name": "Куряче філе",
+    "name": "Chicken Breast",
     "category": "protein",
     "calories": 165,
     "proteins": 31.0,
@@ -401,13 +401,13 @@
       "cheese"
     ],
     "cook_info": {
-      "method": "Нарізати на шматки, обсмажити на пательні 6-8 хв з кожного боку або запекти при 200°C 25-30 хв",
+      "method": "Slice, pan-fry 6–8 min per side, or bake at 200°C for 25–30 min",
       "time_min": 25
     }
   },
   {
     "key": "turkey",
-    "name": "Індичка",
+    "name": "Turkey",
     "category": "protein",
     "calories": 189,
     "proteins": 29.0,
@@ -452,13 +452,13 @@
       "avocado"
     ],
     "cook_info": {
-      "method": "Нарізати на шматки, обсмажити на пательні 7-8 хв або запекти при 200°C 25-30 хв",
+      "method": "Slice, pan-fry 7–8 min per side, or bake at 200°C for 25–30 min",
       "time_min": 25
     }
   },
   {
     "key": "beef",
-    "name": "Яловичина",
+    "name": "Beef",
     "category": "protein",
     "calories": 218,
     "proteins": 26.0,
@@ -501,13 +501,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Нарізати на шматки, обсмажити на сильному вогні 5-7 хв або тушкувати 30-40 хв",
+      "method": "Slice, sear over high heat 5–7 min, or braise 30–40 min",
       "time_min": 35
     }
   },
   {
     "key": "salmon",
-    "name": "Лосось",
+    "name": "Salmon",
     "category": "protein",
     "calories": 208,
     "proteins": 20.0,
@@ -547,13 +547,13 @@
       "buckwheat"
     ],
     "cook_info": {
-      "method": "Посолити, запекти при 200°C 15-18 хв або обсмажити на пательні по 4 хв з кожного боку",
+      "method": "Season, bake at 200°C for 15–18 min, or pan-fry 4 min per side",
       "time_min": 18
     }
   },
   {
     "key": "shrimp",
-    "name": "Креветки",
+    "name": "Shrimp",
     "category": "protein",
     "calories": 99,
     "proteins": 24.0,
@@ -592,13 +592,13 @@
       "buckwheat"
     ],
     "cook_info": {
-      "method": "Варити в підсоленій воді 3-5 хв або обсмажити на пательні 2-3 хв з кожного боку",
+      "method": "Boil in salted water 3–5 min, or pan-fry 2–3 min per side",
       "time_min": 5
     }
   },
   {
     "key": "tuna",
-    "name": "Тунець (консерва)",
+    "name": "Canned Tuna",
     "category": "protein",
     "calories": 132,
     "proteins": 28.0,
@@ -643,13 +643,13 @@
       "sunflower_oil"
     ],
     "cook_info": {
-      "method": "Відкрити консерву, злити олію/воду. Подрібнити виделкою",
+      "method": "Open can, drain oil or water, flake with a fork",
       "time_min": 2
     }
   },
   {
     "key": "hake",
-    "name": "Хек",
+    "name": "Hake",
     "category": "protein",
     "calories": 86,
     "proteins": 17.0,
@@ -692,13 +692,13 @@
       "bell_pepper"
     ],
     "cook_info": {
-      "method": "Запекти при 180°C 20-25 хв або обсмажити на пательні по 5 хв з кожного боку",
+      "method": "Bake at 180°C for 20–25 min, or pan-fry 5 min per side",
       "time_min": 25
     }
   },
   {
     "key": "sardines",
-    "name": "Сардини (консерва)",
+    "name": "Canned Sardines",
     "category": "protein",
     "calories": 208,
     "proteins": 25.0,
@@ -739,13 +739,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Відкрити консерву, злити олію. Подрібнити або подавати цілими",
+      "method": "Open can, drain oil, flake or serve whole",
       "time_min": 2
     }
   },
   {
     "key": "rice",
-    "name": "Рис",
+    "name": "Rice",
     "category": "grain",
     "calories": 130,
     "proteins": 2.7,
@@ -791,13 +791,13 @@
       "spinach"
     ],
     "cook_info": {
-      "method": "Промити, варити у 2x воді 15-18 хв на слабкому вогні під кришкою",
+      "method": "Rinse, cook in 2× water for 15–18 min over low heat with lid on",
       "time_min": 18
     }
   },
   {
     "key": "buckwheat",
-    "name": "Гречка",
+    "name": "Buckwheat",
     "category": "grain",
     "calories": 132,
     "proteins": 4.5,
@@ -839,13 +839,13 @@
       "spinach"
     ],
     "cook_info": {
-      "method": "Промити, варити у 2x воді 15 хв або залити окропом і накрити на 20 хв",
+      "method": "Rinse, cook in 2× water for 15 min, or pour boiling water and cover for 20 min",
       "time_min": 20
     }
   },
   {
     "key": "pasta",
-    "name": "Макарони",
+    "name": "Pasta",
     "category": "grain",
     "calories": 138,
     "proteins": 5.0,
@@ -888,13 +888,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Варити в підсоленій воді за інструкцією, зазвичай 8-11 хв до al dente",
+      "method": "Cook in salted boiling water per package directions, usually 8–11 min al dente",
       "time_min": 11
     }
   },
   {
     "key": "lentils",
-    "name": "Сочевиця",
+    "name": "Lentils",
     "category": "legume",
     "calories": 116,
     "proteins": 9.0,
@@ -933,13 +933,13 @@
       "buckwheat"
     ],
     "cook_info": {
-      "method": "Промити, варити в 3x воді 20-25 хв (червона) або 30-35 хв (зелена)",
+      "method": "Rinse, cook in 3× water — 20–25 min (red) or 30–35 min (green)",
       "time_min": 30
     }
   },
   {
     "key": "sweet_potato",
-    "name": "Батат",
+    "name": "Sweet Potato",
     "category": "vegetable",
     "calories": 86,
     "proteins": 1.6,
@@ -976,13 +976,13 @@
       "tomatoes"
     ],
     "cook_info": {
-      "method": "Очистити, нарізати кубиками, запекти при 200°C 25-30 хв або варити 15-20 хв",
+      "method": "Peel, cube, bake at 200°C for 25–30 min, or boil 15–20 min",
       "time_min": 30
     }
   },
   {
     "key": "tomatoes",
-    "name": "Помідори",
+    "name": "Tomatoes",
     "category": "vegetable",
     "calories": 20,
     "proteins": 0.9,
@@ -1028,13 +1028,13 @@
       "sunflower_oil"
     ],
     "cook_info": {
-      "method": "Вимити, нарізати. Подавати свіжими або обсмажити 2-3 хв",
+      "method": "Wash and slice. Serve fresh or sauté 2–3 min",
       "time_min": 3
     }
   },
   {
     "key": "cucumber",
-    "name": "Огірок",
+    "name": "Cucumber",
     "category": "vegetable",
     "calories": 15,
     "proteins": 0.65,
@@ -1077,13 +1077,13 @@
       "sunflower_oil"
     ],
     "cook_info": {
-      "method": "Вимити, нарізати тонкими кільцями або кубиками",
+      "method": "Wash and slice into thin rounds or cubes",
       "time_min": 2
     }
   },
   {
     "key": "carrot",
-    "name": "Морква",
+    "name": "Carrot",
     "category": "vegetable",
     "calories": 41,
     "proteins": 0.9,
@@ -1124,13 +1124,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Очистити, нарізати або натерти. Варити 10-15 хв або тушкувати 8-10 хв",
+      "method": "Peel and slice or grate. Boil 10–15 min or sauté 8–10 min",
       "time_min": 15
     }
   },
   {
     "key": "broccoli",
-    "name": "Броколі",
+    "name": "Broccoli",
     "category": "vegetable",
     "calories": 34,
     "proteins": 2.8,
@@ -1171,13 +1171,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Розібрати на суцвіття, варити 5-7 хв або обсмажити 5-6 хв",
+      "method": "Break into florets, boil 5–7 min or stir-fry 5–6 min",
       "time_min": 7
     }
   },
   {
     "key": "spinach",
-    "name": "Шпинат",
+    "name": "Spinach",
     "category": "vegetable",
     "calories": 23,
     "proteins": 2.9,
@@ -1218,13 +1218,13 @@
       "carrot"
     ],
     "cook_info": {
-      "method": "Вимити, обсмажити з часником 2-3 хв або додавати свіжим у салат",
+      "method": "Wash, sauté with garlic 2–3 min, or add raw to salads",
       "time_min": 3
     }
   },
   {
     "key": "bell_pepper",
-    "name": "Болгарський перець",
+    "name": "Bell Pepper",
     "category": "vegetable",
     "calories": 27,
     "proteins": 0.9,
@@ -1264,13 +1264,13 @@
       "mushrooms"
     ],
     "cook_info": {
-      "method": "Очистити від насіння, нарізати. Обсмажити 5-7 хв або подавати свіжим",
+      "method": "Deseed and slice. Sauté 5–7 min or serve raw",
       "time_min": 7
     }
   },
   {
     "key": "mushrooms",
-    "name": "Печериці",
+    "name": "Mushrooms",
     "category": "vegetable",
     "calories": 22,
     "proteins": 3.1,
@@ -1311,13 +1311,13 @@
       "cabbage"
     ],
     "cook_info": {
-      "method": "Очистити, нарізати пластинками, обсмажити на пательні 7-10 хв до золотистого кольору",
+      "method": "Clean and slice, pan-fry 7–10 min until golden",
       "time_min": 10
     }
   },
   {
     "key": "avocado",
-    "name": "Авокадо",
+    "name": "Avocado",
     "category": "fat",
     "calories": 160,
     "proteins": 2.0,
@@ -1359,13 +1359,13 @@
       "cheese"
     ],
     "cook_info": {
-      "method": "Розрізати навпіл, видалити кісточку, очистити від шкірки, нарізати",
+      "method": "Halve, remove pit, peel and slice",
       "time_min": 3
     }
   },
   {
     "key": "cheese",
-    "name": "Твердий сир",
+    "name": "Hard Cheese",
     "category": "dairy",
     "calories": 350,
     "proteins": 25.0,
@@ -1404,13 +1404,13 @@
       "onion"
     ],
     "cook_info": {
-      "method": "Нарізати пластинками або натерти на тертці",
+      "method": "Slice or grate",
       "time_min": 2
     }
   },
   {
     "key": "onion",
-    "name": "Цибуля",
+    "name": "Onion",
     "category": "vegetable",
     "calories": 40,
     "proteins": 1.1,
@@ -1457,13 +1457,13 @@
       "bread"
     ],
     "cook_info": {
-      "method": "Очистити, нарізати кубиками, обсмажити на пательні 5-7 хв до м'якості",
+      "method": "Peel and dice, sauté 5–7 min until soft",
       "time_min": 7
     }
   },
   {
     "key": "cabbage",
-    "name": "Капуста",
+    "name": "Cabbage",
     "category": "vegetable",
     "calories": 27,
     "proteins": 1.8,
@@ -1502,13 +1502,13 @@
       "broccoli"
     ],
     "cook_info": {
-      "method": "Нашаткувати, тушкувати 10-15 хв з олією або подавати свіжою у салаті",
+      "method": "Shred and braise 10–15 min with oil, or serve raw in salad",
       "time_min": 15
     }
   },
   {
     "key": "apples",
-    "name": "Яблука",
+    "name": "Apples",
     "category": "fruit",
     "calories": 52,
     "proteins": 0.3,
@@ -1547,13 +1547,13 @@
       "honey"
     ],
     "cook_info": {
-      "method": "Вимити, нарізати часточками або кубиками. Серцевину видалити",
+      "method": "Wash and slice into wedges or cubes, remove core",
       "time_min": 3
     }
   },
   {
     "key": "bananas",
-    "name": "Банани",
+    "name": "Bananas",
     "category": "fruit",
     "calories": 89,
     "proteins": 1.1,
@@ -1592,13 +1592,13 @@
       "honey"
     ],
     "cook_info": {
-      "method": "Очистити, нарізати кільцями або використовувати цілими",
+      "method": "Peel and slice into rounds, or use whole",
       "time_min": 1
     }
   },
   {
     "key": "strawberries",
-    "name": "Полуниця",
+    "name": "Strawberries",
     "category": "fruit",
     "calories": 32,
     "proteins": 0.7,
@@ -1634,13 +1634,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Вимити, видалити хвостики, нарізати навпіл або подавати цілими",
+      "method": "Wash, remove stems, halve or serve whole",
       "time_min": 3
     }
   },
   {
     "key": "blueberries",
-    "name": "Чорниця",
+    "name": "Blueberries",
     "category": "fruit",
     "calories": 57,
     "proteins": 0.7,
@@ -1677,13 +1677,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Вимити холодною водою, підсушити. Подавати свіжою",
+      "method": "Rinse with cold water and pat dry. Serve fresh",
       "time_min": 2
     }
   },
   {
     "key": "berries_mix",
-    "name": "Ягідна суміш",
+    "name": "Mixed Berries",
     "category": "fruit",
     "calories": 45,
     "proteins": 0.7,
@@ -1721,13 +1721,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Розморозити при кімнатній температурі 15-20 хв або використовувати заморожені у смузі",
+      "method": "Thaw at room temperature for 15–20 min, or use frozen in smoothies",
       "time_min": 2
     }
   },
   {
     "key": "granola",
-    "name": "Гранола",
+    "name": "Granola",
     "category": "grain",
     "calories": 380,
     "proteins": 8.0,
@@ -1765,13 +1765,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Відміряти порцію, залити йогуртом або молоком. Настояти 2-3 хв",
+      "method": "Measure a portion, pour yogurt or milk over. Let sit 2–3 min",
       "time_min": 3
     }
   },
   {
     "key": "muesli",
-    "name": "Мюслі",
+    "name": "Muesli",
     "category": "grain",
     "calories": 340,
     "proteins": 9.0,
@@ -1806,13 +1806,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Залити молоком або кефіром, настояти 5-10 хв для розм'якшення",
+      "method": "Pour milk or kefir over and soak 5–10 min to soften",
       "time_min": 10
     }
   },
   {
     "key": "corn_flakes",
-    "name": "Кукурудзяні пластівці",
+    "name": "Corn Flakes",
     "category": "grain",
     "calories": 357,
     "proteins": 7.0,
@@ -1844,13 +1844,13 @@
       "apples"
     ],
     "cook_info": {
-      "method": "Відміряти порцію, залити молоком. Подавати одразу",
+      "method": "Measure a portion, pour milk over. Serve immediately",
       "time_min": 1
     }
   },
   {
     "key": "honey",
-    "name": "Мед",
+    "name": "Honey",
     "category": "other",
     "calories": 304,
     "proteins": 0.3,
@@ -1889,13 +1889,13 @@
       "nuts_mix"
     ],
     "cook_info": {
-      "method": "Відміряти 1 ст.л., додати зверху на страву або розмішати у напої",
+      "method": "Measure 1 tbsp, drizzle over dish or stir into a drink",
       "time_min": 1
     }
   },
   {
     "key": "nuts_mix",
-    "name": "Горіхова суміш",
+    "name": "Mixed Nuts",
     "category": "fat",
     "calories": 580,
     "proteins": 15.0,
@@ -1932,13 +1932,13 @@
       "kefir"
     ],
     "cook_info": {
-      "method": "Відміряти порцію, за бажанням підсмажити на сухій пательні 3-4 хв для аромату",
+      "method": "Measure a portion; optionally toast in a dry pan 3–4 min for extra flavour",
       "time_min": 4
     }
   },
   {
     "key": "peanut_butter",
-    "name": "Арахісова паста",
+    "name": "Peanut Butter",
     "category": "fat",
     "calories": 588,
     "proteins": 25.0,
@@ -1974,13 +1974,13 @@
       "honey"
     ],
     "cook_info": {
-      "method": "Перемішати у банці (якщо розшарувалась), відміряти 1-2 ст.л.",
+      "method": "Stir jar if separated, measure 1–2 tbsp",
       "time_min": 1
     }
   },
   {
     "key": "pumpkin_seeds",
-    "name": "Гарбузове насіння",
+    "name": "Pumpkin Seeds",
     "category": "fat",
     "calories": 446,
     "proteins": 19.0,
@@ -2014,13 +2014,13 @@
       "honey"
     ],
     "cook_info": {
-      "method": "Відміряти порцію, за бажанням підсмажити на сухій пательні 3-4 хв",
+      "method": "Measure a portion; optionally toast in a dry pan 3–4 min",
       "time_min": 4
     }
   },
   {
     "key": "lemon",
-    "name": "Лимон",
+    "name": "Lemon",
     "category": "fruit",
     "calories": 29,
     "proteins": 1.1,
@@ -2059,13 +2059,13 @@
       "cucumber"
     ],
     "cook_info": {
-      "method": "Вимити, розрізати, вичавити сік. Прибрати кісточки",
+      "method": "Wash, halve and squeeze juice, remove seeds",
       "time_min": 2
     }
   },
   {
     "key": "sunflower_oil",
-    "name": "Соняшникова олія",
+    "name": "Sunflower Oil",
     "category": "fat",
     "calories": 884,
     "proteins": 0.0,
@@ -2114,7 +2114,7 @@
       "bananas"
     ],
     "cook_info": {
-      "method": "Відміряти потрібну кількість, розігріти на пательні перед смаженням",
+      "method": "Measure the required amount, heat in pan before frying",
       "time_min": 2
     }
   }

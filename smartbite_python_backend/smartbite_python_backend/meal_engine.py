@@ -2,17 +2,17 @@
 SmartBite Meal Engine v2
 ========================
 
-Ключові принципи:
-  1. БЮДЖЕТ — жорстке обмеження (пріоритет 1): ніколи не перевищується
-  2. КАЛОРІЇ — ціль ±100 ккал/день (пріоритет 2): не максимум, а точне влучання
-  3. НУЛЬ ПОВТОРІВ за тиждень: кожна страва унікальна протягом 7 днів
-  4. РАНДОМІЗАЦІЯ: при кожному запуску без seed — інший план
+Key principles:
+  1. BUDGET — hard constraint (priority 1): never exceeded
+  2. CALORIES — target ±150 kcal/day (priority 2): exact match, not a maximum
+  3. ZERO REPEATS per week: every meal is unique across 7 days
+  4. RANDOMISATION: every run without a seed produces a different plan
 
-Архітектура:
-  - ingredient_graph.json: продукти з відносинами (fits/best_suit/conflicts/neutral)
-  - Страви генеруються автоматично з графу (не з recipes.json)
-  - Багатовимірний knapsack (2D DP): бюджет × калорії
-  - Після DP — відбір унікальних страв з рандомізованим shuffling
+Architecture:
+  - ingredient_graph.json: ingredients with relationships (fits/best_suit/conflicts/neutral)
+  - Meals are generated automatically from the graph (no recipes.json)
+  - Multi-dimensional knapsack (2D DP): budget × calories
+  - Post-DP: unique meal selection with randomised shuffling
 """
 
 import json
@@ -29,36 +29,28 @@ with open(BASE_DIR / "ingredient_graph.json", encoding="utf-8") as f:
 
 INGR_BY_KEY: dict[str, dict] = {p["key"]: p for p in INGREDIENT_GRAPH}
 
-# ────────────────────────────────────────────────────────────────────────────
-# TDEE / добові калорії
-# ────────────────────────────────────────────────────────────────────────────
-
 def calc_daily_calories(
     sex: str, age: int, height_cm: float, weight_kg: float, goal: str
 ) -> int:
-    """Формула Mifflin–St Jeor + корекція цілі."""
+    """Mifflin–St Jeor formula with goal adjustment."""
     s = 5 if sex.lower() == "m" else -161
     bmr = 10 * weight_kg + 6.25 * height_cm - 5 * age + s
     tdee = bmr * 1.4
 
     g = goal.lower().strip()
-    if g in ("схуднення", "cut", "lose", "loss"):
+    if g in ("lose", "loss", "cut"):
         tdee -= 500
-    elif g in ("масонабір", "bulk", "gain"):
+    elif g in ("gain", "bulk"):
         tdee += 300
 
     return round(max(tdee, 1200 if sex.lower() == "f" else 1500))
 
 
-# ────────────────────────────────────────────────────────────────────────────
-# Граф сумісності
-# ────────────────────────────────────────────────────────────────────────────
-
 _COMPAT = {"best_suit": 2, "fits": 1, "neutral": 0, "conflicts": -3}
 
 
 def _compat_score_pair(a_key: str, b_key: str) -> int:
-    """Скор між двома продуктами (мінімум з обох напрямків)."""
+    """Compatibility score between two ingredients (minimum of both directions)."""
     def one_way(src: str, dst: str) -> int:
         p = INGR_BY_KEY.get(src)
         if not p:
@@ -75,7 +67,7 @@ def _compat_score_pair(a_key: str, b_key: str) -> int:
 
 
 def _combo_compat(ingredients: list[str]) -> float:
-    """Середній скор сумісності всіх пар у комбінації."""
+    """Average pairwise compatibility score for a combination."""
     if len(ingredients) < 2:
         return 0.0
     total, n = 0, 0
@@ -86,10 +78,6 @@ def _combo_compat(ingredients: list[str]) -> float:
     return total / n
 
 
-# ────────────────────────────────────────────────────────────────────────────
-# Генерація страв із графу
-# ────────────────────────────────────────────────────────────────────────────
-
 def _generate_meal_combos(
     meal_type: str,
     min_size: int = 2,
@@ -97,8 +85,8 @@ def _generate_meal_combos(
     min_compat: float = 0.5,
 ) -> list[dict]:
     """
-    Генерує всі валідні комбінації продуктів для даного типу прийому їжі.
-    Відфільтровує комбінації з конфліктами (compat < min_compat).
+    Generate all valid ingredient combinations for a given meal type.
+    Filters out combinations with conflicts (compat < min_compat).
     """
     candidates = [p["key"] for p in INGREDIENT_GRAPH if meal_type in p.get("meal_types", [])]
 
@@ -135,46 +123,20 @@ def _generate_meal_combos(
 
     return combos
 
-
-# ────────────────────────────────────────────────────────────────────────────
-# 2D Knapsack DP
-# ────────────────────────────────────────────────────────────────────────────
-#
-# ЗАДАЧА:
-#   Вибрати рівно `pick_count` страв з `pool` так, що:
-#     П1 (жорстке): сума cost ≤ budget_uah
-#     П2 (м'яке):   |сума cal − cal_target| ≤ CAL_TOLERANCE (100 ккал)
-#
-# СТАН dp[m][(b, c)] = найкращий score після m вибраних страв,
-#   де b = дискретизований бюджет, c = дискретизовані калорії.
-#
-# SCORING:
-#   Ціль — потрапити в [cal_target - tolerance, cal_target + tolerance].
-#   Чим ближче до центру — тим краще.
-#     +2_000_000  якщо влучили в зону ±tolerance
-#     -|deficit| * 20   якщо не дотягнули
-#     -|excess|  * 15   якщо перевищили (але в межах C_max)
-#     +compat_score * 80 (якість поєднання продуктів)
-#     -cost * 0.05 (легкий стимул економити в рамках бюджету)
-#
-# РАНДОМІЗАЦІЯ:
-#   При рівних score (|diff| < ε) — випадковий вибір через rng.
-#   Це гарантує різні плани при різних seed.
-#
 def dp_pick(
     pool: list[dict],
     pick_count: int,
     budget_uah: float,
     cal_target: float,
     cal_tolerance: float = 100.0,
-    max_repeat: int = 1,          # =1 → кожна страва max 1 раз (нуль повторів)
+    max_repeat: int = 1,
     budget_step: float = 5.0,
-    cal_step: float = 25.0,       # менший крок → точніше влучання в калорії
+    cal_step: float = 25.0,
     rng: Optional[random.Random] = None,
 ) -> Optional[list[int]]:
     """
-    Повертає список індексів у pool (може повторюватись якщо max_repeat > 1).
-    None — якщо рішення в межах бюджету не знайдено.
+    Returns a list of indices into pool (may repeat if max_repeat > 1).
+    None — if no solution within budget is found.
     """
     if rng is None:
         rng = random.Random()
@@ -186,16 +148,13 @@ def dp_pick(
     C_tol    = max(1, round(cal_tolerance / cal_step))
     C_lo     = C_target - C_tol
     C_hi     = C_target + C_tol
-    C_max    = C_target + C_tol * 3 + 10  # абсолютний максимум
+    C_max    = C_target + C_tol * 3 + 10
 
-    # Розгортаємо items з урахуванням max_repeat
     items: list[dict] = []
     for rid, item in enumerate(pool):
         for rep in range(max_repeat):
             items.append({"rid": rid, "item": item, "rep": rep})
 
-    # dp[m][(b,c)] = score
-    # back[m][(b,c)] = (prev_b, prev_c, item_idx)
     INF = float("-inf")
     dp:   list[dict] = [{} for _ in range(pick_count + 1)]
     back: list[dict] = [{} for _ in range(pick_count + 1)]
@@ -213,28 +172,24 @@ def dp_pick(
                 nb = b + rb
                 nc = c + rc
 
-                # П1: жорстке — бюджет
                 if nb > B:
                     continue
-                # Не йдемо занадто далеко від цілі
                 if nc > C_max:
                     continue
 
-                # П2: калорії — точне влучання важливіше за максимізацію
                 in_zone = C_lo <= nc <= C_hi
                 dist_to_center = abs(nc - C_target)
 
                 new_score = (
                     score
                     + (2_000_000 if in_zone else 0)
-                    - dist_to_center * 20          # штраф пропорційний відстані
+                    - dist_to_center * 20
                     + item.get("compat_score", 0) * 80
-                    - nb * 0.05                    # легкий стимул економити
+                    - nb * 0.05
                 )
 
                 key = (nb, nc)
                 prev = dp[m + 1].get(key, INF)
-                # Tie-breaking: рандомізація при близьких score
                 if new_score > prev or (
                     abs(new_score - prev) < 500 and rng.random() < 0.4
                 ):
@@ -246,7 +201,6 @@ def dp_pick(
 
     best_key = max(dp[pick_count], key=lambda k: dp[pick_count][k])
 
-    # Backtrack
     chosen = []
     key = best_key
     for m in range(pick_count, 0, -1):
@@ -257,11 +211,6 @@ def dp_pick(
     chosen.reverse()
     return chosen
 
-
-# ────────────────────────────────────────────────────────────────────────────
-# Відбір УНІКАЛЬНИХ страв (нуль повторів за тиждень)
-# ────────────────────────────────────────────────────────────────────────────
-
 def _pick_unique_meals(
     pool: list[dict],
     count: int,
@@ -271,22 +220,21 @@ def _pick_unique_meals(
     rng: random.Random,
 ) -> list[dict]:
     """
-    Повертає `count` УНІКАЛЬНИХ страв з pool.
+    Returns `count` UNIQUE meals from pool.
 
-    Алгоритм:
-      1. Фільтруємо по бюджету
-      2. З відфільтрованих беремо ТІЛЬКИ ті що в зоні ±cal_tolerance
-      3. Рандомно вибираємо з цієї зони — це забезпечує і точність калорій, і різноманітність
-      4. Якщо в зоні не вистачає — поступово розширюємо зону
+    Algorithm:
+      1. Filter by budget
+      2. From filtered, take ONLY those within ±cal_tolerance zone
+      3. Randomly pick from this zone — ensures both calorie accuracy and variety
+      4. If zone is too small — gradually widen it
 
-    Результат: кожна страва унікальна, калорії близько до cal_per_meal.
+    Result: every meal is unique, calories close to cal_per_meal.
     """
     used_names: set[str] = set()
 
     def _try_pick(candidates: list[dict], needed: int) -> list[dict]:
-        """Рандомно вибирає needed унікальних страв з кандидатів."""
+        """Randomly selects `needed` unique meals from candidates."""
         unique_cands = [m for m in candidates if m["name"] not in used_names]
-        # Додаємо jitter для рандомізації при рівних відстанях
         jittered = [(m, abs(m["cal"] - cal_per_meal) - rng.uniform(0, cal_tolerance * 0.3)) for m in unique_cands]
         jittered.sort(key=lambda x: x[1])
         result = []
@@ -298,41 +246,30 @@ def _pick_unique_meals(
                 break
         return result
 
-    # Фільтруємо по бюджету (трохи м'якше: дозволяємо до 20% перевищення)
     affordable = [m for m in pool if m["cost"] <= budget_per_meal * 1.2]
     if not affordable:
         affordable = sorted(pool, key=lambda x: x["cost"])[:max(count * 4, 30)]
 
     picked: list[dict] = []
 
-    # Спроба 1: в зоні ±tolerance
     in_zone = [m for m in affordable if abs(m["cal"] - cal_per_meal) <= cal_tolerance]
     picked += _try_pick(in_zone, count)
 
-    # Спроба 2: розширюємо до ±tolerance*2
     if len(picked) < count:
         wider = [m for m in affordable if abs(m["cal"] - cal_per_meal) <= cal_tolerance * 2]
         picked += _try_pick(wider, count - len(picked))
 
-    # Спроба 3: ±tolerance*3
     if len(picked) < count:
         wider3 = [m for m in affordable if abs(m["cal"] - cal_per_meal) <= cal_tolerance * 3]
         picked += _try_pick(wider3, count - len(picked))
 
-    # Спроба 4: будь-що з affordable (сортуємо за відстанню)
     if len(picked) < count:
         picked += _try_pick(affordable, count - len(picked))
 
-    # Спроба 5: весь пул без обмеження бюджету
     if len(picked) < count:
         picked += _try_pick(pool, count - len(picked))
 
     return picked
-
-
-# ────────────────────────────────────────────────────────────────────────────
-# Побудова розкладу та списку покупок
-# ────────────────────────────────────────────────────────────────────────────
 
 def _build_schedule(
     day_slots: list[str],
@@ -340,9 +277,8 @@ def _build_schedule(
     days: int,
 ) -> Optional[list[dict]]:
     """
-    Розставляє страви по слотах. Кожна страва зустрічається рівно 1 раз.
+    Assigns meals to slots. Each meal appears exactly once.
     """
-    # Копії черг
     queues = {t: list(lst) for t, lst in meals_by_type.items()}
     schedule = []
 
@@ -350,7 +286,6 @@ def _build_schedule(
         for slot in day_slots:
             queue = queues.get(slot, [])
 
-            # Fallback: якщо слот порожній — беремо з найближчого типу
             if not queue:
                 for fallback in ("lunch", "dinner", "breakfast", "snack"):
                     if queues.get(fallback):
@@ -398,33 +333,28 @@ def build_shopping_list(schedule: list[dict]) -> tuple[list[dict], float]:
     return shopping, round(total, 2)
 
 
-# ────────────────────────────────────────────────────────────────────────────
-# Головна функція
-# ────────────────────────────────────────────────────────────────────────────
-
 def solve_week(
     week_budget_uah: float,
     daily_cal_target: float,
     meals_per_day: int = 3,
     skip_meal: Optional[str] = None,
     days: int = 7,
-    cal_tolerance: float = 150.0,  # ±150 ккал від цілі на день
+    cal_tolerance: float = 150.0,
     budget_step: float = 5.0,
     cal_step: float = 25.0,
     seed: Optional[int] = None,
 ) -> dict:
     """
-    Генерує тижневий план харчування.
+    Generate a weekly meal plan.
 
-    Гарантії:
-      - Жодного повтору страви протягом тижня
-      - Калорії кожного дня в межах ±cal_tolerance від daily_cal_target
-      - Загальна вартість ≤ week_budget_uah
-      - Різні плани при різних seed (або без seed)
+    Guarantees:
+      - No meal repeats across the week
+      - Daily calories within ±cal_tolerance of daily_cal_target
+      - Total cost ≤ week_budget_uah
+      - Different plans for different seeds (or no seed)
     """
-    rng = random.Random(seed)  # None → новий рандом при кожному виклику
+    rng = random.Random(seed)
 
-    # 1. Визначаємо слоти
     base = ["breakfast", "lunch", "dinner"]
     if meals_per_day == 2:
         skip = skip_meal if skip_meal in base else "breakfast"
@@ -436,48 +366,33 @@ def solve_week(
     elif meals_per_day == 5:
         day_slots = ["breakfast", "lunch", "dinner", "snack", "snack"]
     else:
-        return {"status": "failed", "reason": "meals_per_day must be 2..5"}
+        return {"status": "failed", "reason": "meals_per_day must be 2–5"}
 
     budget_per_meal = week_budget_uah / (len(day_slots) * days)
-    # Для пошуку даємо трохи більше свободи (±15%), а наприкінці перевіряємо тижневий бюджет
     budget_search = budget_per_meal * 1.15
 
-    # 2. Генеруємо пули страв для кожного типу + перемішуємо для рандомізації
     pools: dict[str, list[dict]] = {}
     for meal_type in set(day_slots):
         combos = _generate_meal_combos(meal_type, min_size=2, max_size=4, min_compat=0.3)
-        # Топ-200 за сумісністю для швидкості
         combos = sorted(combos, key=lambda x: x["compat_score"], reverse=True)[:400]
         rng.shuffle(combos)
         pools[meal_type] = combos
 
-    # Fallback пул: всі типи разом
     all_combos_shuffled = []
     for combos in pools.values():
         all_combos_shuffled.extend(combos)
     rng.shuffle(all_combos_shuffled)
-
-    # ──────────────────────────────────────────────────────────────
-    # 3. Будуємо розклад ДЕНЬ ЗА ДНЕМ
-    #
-    # Ключова ідея для ±100 ккал:
-    #   - Для кожного слоту в дні рахуємо, скільки ккал ще треба
-    #     розподілити по слотах що залишились
-    #   - slot_cal_target = залишок_калорій / кількість_слотів_що_залишились
-    #   - Вибираємо страву якомога ближче до slot_cal_target
-    #   - Jitter (±40% tolerance) забезпечує різноманітність при різних seed
-    # ──────────────────────────────────────────────────────────────
 
     used_globally: set[str] = set()
     schedule: list[dict] = []
 
     def best_meal_for_target(meal_type: str, cal_target_for_slot: float, budget_limit: float):
         """
-        Знаходить найкращу УНІКАЛЬНУ страву близьку до cal_target_for_slot.
+        Find the best UNIQUE meal closest to cal_target_for_slot.
 
-        Рандомізація: серед страв в межах ±50 ккал від найкращої відстані
-        рандомно вибираємо одну — це гарантує різноманітність при різних seed,
-        але не відхиляє далеко від цілі.
+        Randomisation: among meals within ±50 kcal of the best distance,
+        pick one at random — this ensures variety across seeds
+        without drifting far from the calorie target.
         """
         pool = [m for m in pools.get(meal_type, []) if m["name"] not in used_globally]
         if not pool:
@@ -494,31 +409,16 @@ def solve_week(
         if not affordable:
             affordable = sorted(pool, key=lambda x: x["cost"])[:max(len(pool)//3, 5)]
 
-        # Сортуємо за відстанню до цілі
         affordable_sorted = sorted(affordable, key=lambda m: abs(m["cal"] - cal_target_for_slot))
 
-        # Беремо всі страви що відхиляються не більше ніж best + 50 ккал
-        # Це "зона рандомізації" — варіативність без великих втрат точності
         best_dist = abs(affordable_sorted[0]["cal"] - cal_target_for_slot)
         rand_band = [m for m in affordable_sorted if abs(m["cal"] - cal_target_for_slot) <= best_dist + 50]
 
         return rng.choice(rand_band)
 
-    # ──────────────────────────────────────────────────────────
-    # Будуємо розклад день за днем.
-    #
-    # Для кожного дня — жадібний підбір страв по слотах:
-    #   Для кожного слоту вибираємо страву так, щоб
-    #   СУМА калорій за день була ±cal_tolerance від daily_cal_target.
-    #
-    #   remaining_cal / slots_left = ціль для поточного слоту,
-    #   але з рандомним jitter (різні seed → різні результати).
-    #
-    #   Бюджет: жорсткий ліміт = budget_per_meal на страву.
-    # ──────────────────────────────────────────────────────────
 
     total_slots = len(day_slots) * days
-    remaining_budget = week_budget_uah  # тижневий залишок бюджету
+    remaining_budget = week_budget_uah
 
     for day_idx in range(days):
         remaining_cal = daily_cal_target
@@ -526,9 +426,7 @@ def solve_week(
 
         for slot_idx, slot in enumerate(day_slots):
             slots_left_total = total_slots - day_idx * len(day_slots) - slot_idx
-            # Динамічний бюджет: залишок бюджету / кількість страв що залишилось
             raw_dynamic = remaining_budget / slots_left_total if slots_left_total > 0 else budget_per_meal
-            # Не даємо бюджету бути меншим за середній/страву, щоб перші дні не голодували
             dynamic_budget = max(raw_dynamic, budget_per_meal)
 
             slots_left_day = len(day_slots) - slot_idx
@@ -536,7 +434,7 @@ def solve_week(
 
             chosen = best_meal_for_target(slot, slot_cal_target, dynamic_budget)
             if chosen is None:
-                return {"status": "failed", "reason": f"Не вистачило унікальних страв (день {day_idx+1}, {slot})"}
+                return {"status": "failed", "reason": f"Not enough unique meals (day {day_idx+1}, {slot})"}
 
             used_globally.add(chosen["name"])
             remaining_cal -= chosen["cal"]
@@ -545,17 +443,14 @@ def solve_week(
 
         schedule.extend(day_meals)
 
-    # 4. Верифікуємо нуль повторів
     seen_names = [m["name"] for m in schedule]
     dup_warning = None
     if len(seen_names) != len(set(seen_names)):
         dups = list(set(n for n in seen_names if seen_names.count(n) > 1))
-        dup_warning = f"Знайдені повтори (розширте пул): {dups}"
+        dup_warning = f"Duplicate meals found (expand the pool): {dups}"
 
-    # 5. Список покупок
     shopping, shopping_total = build_shopping_list(schedule)
 
-    # 6. Week plan зі статистикою по днях
     week_plan = []
     for day_idx in range(days):
         day_meals = [m for m in schedule if m["day"] == day_idx + 1]

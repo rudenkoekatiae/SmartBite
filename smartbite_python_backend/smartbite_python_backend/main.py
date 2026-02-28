@@ -1,6 +1,6 @@
 """
 SmartBite API v2
-FastAPI backend із валідацією вхідних даних.
+FastAPI backend with input validation.
 """
 
 import os
@@ -10,8 +10,6 @@ from pydantic import BaseModel, field_validator, model_validator
 from typing import Optional
 
 from meal_engine import calc_daily_calories, solve_week, INGREDIENT_GRAPH
-
-
 PREFIX = os.getenv("API_PREFIX", "/make-server-fd5d4174")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
 
@@ -63,7 +61,7 @@ class CaloriesRequest(BaseModel):
     @field_validator("goal")
     @classmethod
     def validate_goal(cls, v: str) -> str:
-        allowed = ("cut", "bulk", "maintain", "схуднення", "масонабір", "підтримка", "lose", "gain", "loss")
+        allowed = ("cut", "bulk", "maintain", "lose", "gain", "loss")
         if v.lower().strip() not in allowed:
             raise ValueError(f"goal must be one of: {allowed}")
         return v
@@ -116,8 +114,6 @@ class PlanRequest(BaseModel):
         return v
 
 
-
-
 @app.get(f"{PREFIX}/health")
 def health():
     return {"status": "ok", "version": "2.0"}
@@ -158,7 +154,7 @@ def generate_plan(body: PlanRequest):
 
 @app.get(f"{PREFIX}/ingredients")
 def get_ingredients():
-    """Повертає граф продуктів (замість recipes + products окремо)."""
+    """Returns the ingredient graph (replaces separate recipes + products endpoints)."""
     return {"ingredients": INGREDIENT_GRAPH}
 
 
