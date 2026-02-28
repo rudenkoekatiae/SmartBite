@@ -1,0 +1,2121 @@
+[
+  {
+    "key": "oats",
+    "name": "Вівсянка",
+    "category": "grain",
+    "calories": 68,
+    "proteins": 2.4,
+    "fats": 1.4,
+    "carbs": 12.0,
+    "price_per_100g": 3.5,
+    "portion_g": 60,
+    "meal_types": [
+      "breakfast"
+    ],
+    "fits": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "bananas",
+      "apples",
+      "cottage_cheese",
+      "strawberries",
+      "blueberries",
+      "honey",
+      "nuts_mix",
+      "peanut_butter"
+    ],
+    "best_suit": [
+      "milk",
+      "bananas",
+      "apples"
+    ],
+    "conflicts": [
+      "chicken",
+      "tuna",
+      "hake",
+      "turkey",
+      "sardines",
+      "beef",
+      "salmon",
+      "shrimp"
+    ],
+    "neutral": [
+      "eggs",
+      "bread",
+      "sunflower_oil",
+      "pumpkin_seeds"
+    ],
+    "cook_info": {
+      "method": "Залити окропом або молоком, накрити на 5 хв. Або варити 3-5 хв на середньому вогні",
+      "time_min": 5
+    }
+  },
+  {
+    "key": "milk",
+    "name": "Молоко",
+    "category": "dairy",
+    "calories": 53,
+    "proteins": 2.8,
+    "fats": 2.6,
+    "carbs": 4.7,
+    "price_per_100g": 5.8,
+    "portion_g": 250,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "cottage_cheese",
+      "eggs",
+      "bananas",
+      "apples",
+      "honey",
+      "muesli",
+      "corn_flakes"
+    ],
+    "best_suit": [
+      "oats",
+      "cottage_cheese",
+      "muesli"
+    ],
+    "conflicts": [
+      "tuna",
+      "sardines",
+      "chicken",
+      "hake",
+      "beef",
+      "salmon"
+    ],
+    "neutral": [
+      "bread",
+      "yogurt",
+      "kefir",
+      "peanut_butter"
+    ],
+    "cook_info": {
+      "method": "Підігріти до 60°C або використовувати холодним",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "kefir",
+    "name": "Кефір",
+    "category": "dairy",
+    "calories": 40,
+    "proteins": 3.4,
+    "fats": 1.0,
+    "carbs": 4.7,
+    "price_per_100g": 4.2,
+    "portion_g": 250,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "cottage_cheese",
+      "oats",
+      "apples",
+      "bananas",
+      "berries_mix",
+      "strawberries",
+      "blueberries"
+    ],
+    "best_suit": [
+      "cottage_cheese",
+      "berries_mix"
+    ],
+    "conflicts": [
+      "chicken",
+      "tuna",
+      "hake",
+      "turkey",
+      "beef",
+      "salmon"
+    ],
+    "neutral": [
+      "bread",
+      "eggs",
+      "honey",
+      "muesli"
+    ],
+    "cook_info": {
+      "method": "Використовувати прямо з холодильника, кімнатна температура краща",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "yogurt",
+    "name": "Йогурт",
+    "category": "dairy",
+    "calories": 98,
+    "proteins": 5.0,
+    "fats": 3.2,
+    "carbs": 13.5,
+    "price_per_100g": 6.0,
+    "portion_g": 200,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "apples",
+      "bananas",
+      "strawberries",
+      "blueberries",
+      "berries_mix",
+      "honey",
+      "muesli",
+      "nuts_mix",
+      "granola"
+    ],
+    "best_suit": [
+      "apples",
+      "bananas",
+      "granola",
+      "berries_mix"
+    ],
+    "conflicts": [
+      "chicken",
+      "tuna",
+      "sardines",
+      "beef"
+    ],
+    "neutral": [
+      "bread",
+      "eggs",
+      "pumpkin_seeds"
+    ],
+    "cook_info": {
+      "method": "Використовувати охолодженим, за бажанням змішати з фруктами",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "cottage_cheese",
+    "name": "Сир кисломолочний",
+    "category": "dairy",
+    "calories": 155,
+    "proteins": 17.0,
+    "fats": 9.0,
+    "carbs": 2.7,
+    "price_per_100g": 9.5,
+    "portion_g": 200,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "apples",
+      "bananas",
+      "honey",
+      "strawberries",
+      "blueberries",
+      "berries_mix",
+      "nuts_mix",
+      "peanut_butter"
+    ],
+    "best_suit": [
+      "kefir",
+      "apples",
+      "honey",
+      "berries_mix"
+    ],
+    "conflicts": [
+      "chicken",
+      "tuna",
+      "sardines",
+      "rice",
+      "pasta",
+      "beef"
+    ],
+    "neutral": [
+      "bread",
+      "oats",
+      "sunflower_oil",
+      "pumpkin_seeds"
+    ],
+    "cook_info": {
+      "method": "Використовувати готовим, за бажанням протерти крізь сито для ніжної текстури",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "eggs",
+    "name": "Яйця",
+    "category": "protein",
+    "calories": 157,
+    "proteins": 13.0,
+    "fats": 11.5,
+    "carbs": 1.1,
+    "price_per_100g": 6.5,
+    "portion_g": 150,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "bread",
+      "tomatoes",
+      "cucumber",
+      "onion",
+      "sunflower_oil",
+      "cottage_cheese",
+      "spinach",
+      "bell_pepper",
+      "mushrooms",
+      "avocado"
+    ],
+    "best_suit": [
+      "tomatoes",
+      "bread",
+      "spinach",
+      "mushrooms"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "broccoli",
+      "carrot",
+      "cabbage",
+      "cheese"
+    ],
+    "cook_info": {
+      "method": "Смажити на пательні з олією 3-4 хв, або варити 7-10 хв (круто), або 5 хв (некруто)",
+      "time_min": 7
+    }
+  },
+  {
+    "key": "bread",
+    "name": "Хліб",
+    "category": "grain",
+    "calories": 233,
+    "proteins": 7.0,
+    "fats": 1.0,
+    "carbs": 48.0,
+    "price_per_100g": 3.0,
+    "portion_g": 70,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "snack"
+    ],
+    "fits": [
+      "eggs",
+      "cottage_cheese",
+      "tomatoes",
+      "cucumber",
+      "tuna",
+      "sardines",
+      "avocado",
+      "cheese",
+      "peanut_butter"
+    ],
+    "best_suit": [
+      "eggs",
+      "tuna",
+      "avocado",
+      "cheese"
+    ],
+    "conflicts": [
+      "rice",
+      "pasta",
+      "buckwheat",
+      "oats"
+    ],
+    "neutral": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "chicken",
+      "turkey",
+      "spinach"
+    ],
+    "cook_info": {
+      "method": "Нарізати скибками, за бажанням підсмажити у тостері 2-3 хв",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "chicken",
+    "name": "Куряче філе",
+    "category": "protein",
+    "calories": 165,
+    "proteins": 31.0,
+    "fats": 3.6,
+    "carbs": 0.0,
+    "price_per_100g": 12.0,
+    "portion_g": 230,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "rice",
+      "buckwheat",
+      "broccoli",
+      "tomatoes",
+      "cucumber",
+      "onion",
+      "carrot",
+      "sunflower_oil",
+      "cabbage",
+      "spinach",
+      "bell_pepper",
+      "mushrooms",
+      "pasta",
+      "lentils"
+    ],
+    "best_suit": [
+      "rice",
+      "broccoli",
+      "spinach",
+      "bell_pepper"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "tuna",
+      "hake",
+      "sardines",
+      "eggs",
+      "salmon",
+      "shrimp"
+    ],
+    "neutral": [
+      "bread",
+      "apples",
+      "avocado",
+      "cheese"
+    ],
+    "cook_info": {
+      "method": "Нарізати на шматки, обсмажити на пательні 6-8 хв з кожного боку або запекти при 200°C 25-30 хв",
+      "time_min": 25
+    }
+  },
+  {
+    "key": "turkey",
+    "name": "Індичка",
+    "category": "protein",
+    "calories": 189,
+    "proteins": 29.0,
+    "fats": 7.0,
+    "carbs": 0.0,
+    "price_per_100g": 14.0,
+    "portion_g": 230,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "rice",
+      "buckwheat",
+      "broccoli",
+      "tomatoes",
+      "cucumber",
+      "onion",
+      "sunflower_oil",
+      "spinach",
+      "bell_pepper",
+      "mushrooms",
+      "sweet_potato"
+    ],
+    "best_suit": [
+      "buckwheat",
+      "broccoli",
+      "sweet_potato"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "tuna",
+      "sardines",
+      "salmon"
+    ],
+    "neutral": [
+      "pasta",
+      "cabbage",
+      "carrot",
+      "bread",
+      "avocado"
+    ],
+    "cook_info": {
+      "method": "Нарізати на шматки, обсмажити на пательні 7-8 хв або запекти при 200°C 25-30 хв",
+      "time_min": 25
+    }
+  },
+  {
+    "key": "beef",
+    "name": "Яловичина",
+    "category": "protein",
+    "calories": 218,
+    "proteins": 26.0,
+    "fats": 12.0,
+    "carbs": 0.0,
+    "price_per_100g": 18.0,
+    "portion_g": 210,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "buckwheat",
+      "rice",
+      "onion",
+      "carrot",
+      "tomatoes",
+      "mushrooms",
+      "bell_pepper",
+      "sunflower_oil"
+    ],
+    "best_suit": [
+      "buckwheat",
+      "mushrooms",
+      "onion"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "tuna",
+      "sardines",
+      "salmon",
+      "chicken"
+    ],
+    "neutral": [
+      "pasta",
+      "broccoli",
+      "spinach",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Нарізати на шматки, обсмажити на сильному вогні 5-7 хв або тушкувати 30-40 хв",
+      "time_min": 35
+    }
+  },
+  {
+    "key": "salmon",
+    "name": "Лосось",
+    "category": "protein",
+    "calories": 208,
+    "proteins": 20.0,
+    "fats": 13.0,
+    "carbs": 0.0,
+    "price_per_100g": 22.0,
+    "portion_g": 200,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "rice",
+      "broccoli",
+      "spinach",
+      "avocado",
+      "cucumber",
+      "lemon",
+      "tomatoes"
+    ],
+    "best_suit": [
+      "broccoli",
+      "avocado",
+      "spinach"
+    ],
+    "conflicts": [
+      "milk",
+      "chicken",
+      "turkey",
+      "beef",
+      "sardines"
+    ],
+    "neutral": [
+      "pasta",
+      "onion",
+      "bell_pepper",
+      "buckwheat"
+    ],
+    "cook_info": {
+      "method": "Посолити, запекти при 200°C 15-18 хв або обсмажити на пательні по 4 хв з кожного боку",
+      "time_min": 18
+    }
+  },
+  {
+    "key": "shrimp",
+    "name": "Креветки",
+    "category": "protein",
+    "calories": 99,
+    "proteins": 24.0,
+    "fats": 0.3,
+    "carbs": 0.2,
+    "price_per_100g": 20.0,
+    "portion_g": 200,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "rice",
+      "pasta",
+      "avocado",
+      "cucumber",
+      "tomatoes",
+      "onion",
+      "lemon",
+      "bell_pepper"
+    ],
+    "best_suit": [
+      "rice",
+      "avocado",
+      "lemon"
+    ],
+    "conflicts": [
+      "milk",
+      "chicken",
+      "beef",
+      "sardines"
+    ],
+    "neutral": [
+      "broccoli",
+      "spinach",
+      "buckwheat"
+    ],
+    "cook_info": {
+      "method": "Варити в підсоленій воді 3-5 хв або обсмажити на пательні 2-3 хв з кожного боку",
+      "time_min": 5
+    }
+  },
+  {
+    "key": "tuna",
+    "name": "Тунець (консерва)",
+    "category": "protein",
+    "calories": 132,
+    "proteins": 28.0,
+    "fats": 1.0,
+    "carbs": 0.0,
+    "price_per_100g": 11.0,
+    "portion_g": 180,
+    "meal_types": [
+      "lunch",
+      "dinner",
+      "snack"
+    ],
+    "fits": [
+      "bread",
+      "tomatoes",
+      "cucumber",
+      "onion",
+      "rice",
+      "buckwheat",
+      "avocado",
+      "spinach"
+    ],
+    "best_suit": [
+      "bread",
+      "tomatoes",
+      "avocado"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "chicken",
+      "turkey",
+      "eggs",
+      "salmon"
+    ],
+    "neutral": [
+      "pasta",
+      "broccoli",
+      "carrot",
+      "cabbage",
+      "sunflower_oil"
+    ],
+    "cook_info": {
+      "method": "Відкрити консерву, злити олію/воду. Подрібнити виделкою",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "hake",
+    "name": "Хек",
+    "category": "protein",
+    "calories": 86,
+    "proteins": 17.0,
+    "fats": 2.2,
+    "carbs": 0.0,
+    "price_per_100g": 7.5,
+    "portion_g": 230,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "rice",
+      "buckwheat",
+      "broccoli",
+      "tomatoes",
+      "onion",
+      "sunflower_oil",
+      "carrot",
+      "spinach",
+      "lemon"
+    ],
+    "best_suit": [
+      "rice",
+      "broccoli",
+      "lemon"
+    ],
+    "conflicts": [
+      "milk",
+      "chicken",
+      "turkey",
+      "sardines",
+      "beef"
+    ],
+    "neutral": [
+      "pasta",
+      "cucumber",
+      "cabbage",
+      "bread",
+      "bell_pepper"
+    ],
+    "cook_info": {
+      "method": "Запекти при 180°C 20-25 хв або обсмажити на пательні по 5 хв з кожного боку",
+      "time_min": 25
+    }
+  },
+  {
+    "key": "sardines",
+    "name": "Сардини (консерва)",
+    "category": "protein",
+    "calories": 208,
+    "proteins": 25.0,
+    "fats": 11.0,
+    "carbs": 0.0,
+    "price_per_100g": 8.0,
+    "portion_g": 180,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "bread",
+      "tomatoes",
+      "onion",
+      "cucumber",
+      "buckwheat",
+      "lemon"
+    ],
+    "best_suit": [
+      "bread",
+      "tomatoes"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "chicken",
+      "turkey",
+      "hake",
+      "salmon",
+      "beef"
+    ],
+    "neutral": [
+      "rice",
+      "broccoli",
+      "carrot",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Відкрити консерву, злити олію. Подрібнити або подавати цілими",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "rice",
+    "name": "Рис",
+    "category": "grain",
+    "calories": 130,
+    "proteins": 2.7,
+    "fats": 0.3,
+    "carbs": 28.0,
+    "price_per_100g": 4.0,
+    "portion_g": 120,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "tuna",
+      "salmon",
+      "shrimp",
+      "broccoli",
+      "tomatoes",
+      "onion",
+      "sunflower_oil",
+      "carrot",
+      "bell_pepper",
+      "mushrooms"
+    ],
+    "best_suit": [
+      "chicken",
+      "broccoli",
+      "shrimp"
+    ],
+    "conflicts": [
+      "bread",
+      "pasta",
+      "buckwheat",
+      "oats"
+    ],
+    "neutral": [
+      "eggs",
+      "cucumber",
+      "cabbage",
+      "beef",
+      "spinach"
+    ],
+    "cook_info": {
+      "method": "Промити, варити у 2x воді 15-18 хв на слабкому вогні під кришкою",
+      "time_min": 18
+    }
+  },
+  {
+    "key": "buckwheat",
+    "name": "Гречка",
+    "category": "grain",
+    "calories": 132,
+    "proteins": 4.5,
+    "fats": 1.1,
+    "carbs": 27.0,
+    "price_per_100g": 5.0,
+    "portion_g": 120,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "tuna",
+      "beef",
+      "onion",
+      "carrot",
+      "sunflower_oil",
+      "mushrooms"
+    ],
+    "best_suit": [
+      "turkey",
+      "chicken",
+      "beef",
+      "mushrooms"
+    ],
+    "conflicts": [
+      "rice",
+      "pasta",
+      "bread"
+    ],
+    "neutral": [
+      "broccoli",
+      "tomatoes",
+      "cucumber",
+      "cabbage",
+      "spinach"
+    ],
+    "cook_info": {
+      "method": "Промити, варити у 2x воді 15 хв або залити окропом і накрити на 20 хв",
+      "time_min": 20
+    }
+  },
+  {
+    "key": "pasta",
+    "name": "Макарони",
+    "category": "grain",
+    "calories": 138,
+    "proteins": 5.0,
+    "fats": 0.9,
+    "carbs": 27.0,
+    "price_per_100g": 3.5,
+    "portion_g": 130,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "tomatoes",
+      "onion",
+      "sunflower_oil",
+      "shrimp",
+      "mushrooms",
+      "cheese",
+      "spinach",
+      "bell_pepper"
+    ],
+    "best_suit": [
+      "chicken",
+      "tomatoes",
+      "mushrooms",
+      "cheese"
+    ],
+    "conflicts": [
+      "rice",
+      "buckwheat",
+      "bread",
+      "cottage_cheese"
+    ],
+    "neutral": [
+      "broccoli",
+      "cucumber",
+      "carrot",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Варити в підсоленій воді за інструкцією, зазвичай 8-11 хв до al dente",
+      "time_min": 11
+    }
+  },
+  {
+    "key": "lentils",
+    "name": "Сочевиця",
+    "category": "legume",
+    "calories": 116,
+    "proteins": 9.0,
+    "fats": 0.4,
+    "carbs": 20.0,
+    "price_per_100g": 4.0,
+    "portion_g": 160,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "onion",
+      "carrot",
+      "tomatoes",
+      "spinach",
+      "bell_pepper",
+      "sunflower_oil"
+    ],
+    "best_suit": [
+      "chicken",
+      "onion",
+      "carrot"
+    ],
+    "conflicts": [
+      "milk",
+      "yogurt",
+      "rice",
+      "pasta"
+    ],
+    "neutral": [
+      "broccoli",
+      "cucumber",
+      "mushrooms",
+      "buckwheat"
+    ],
+    "cook_info": {
+      "method": "Промити, варити в 3x воді 20-25 хв (червона) або 30-35 хв (зелена)",
+      "time_min": 30
+    }
+  },
+  {
+    "key": "sweet_potato",
+    "name": "Батат",
+    "category": "vegetable",
+    "calories": 86,
+    "proteins": 1.6,
+    "fats": 0.1,
+    "carbs": 20.0,
+    "price_per_100g": 6.0,
+    "portion_g": 200,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "salmon",
+      "broccoli",
+      "spinach",
+      "sunflower_oil",
+      "onion"
+    ],
+    "best_suit": [
+      "turkey",
+      "chicken",
+      "salmon"
+    ],
+    "conflicts": [
+      "milk",
+      "sardines"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "mushrooms",
+      "tomatoes"
+    ],
+    "cook_info": {
+      "method": "Очистити, нарізати кубиками, запекти при 200°C 25-30 хв або варити 15-20 хв",
+      "time_min": 30
+    }
+  },
+  {
+    "key": "tomatoes",
+    "name": "Помідори",
+    "category": "vegetable",
+    "calories": 20,
+    "proteins": 0.9,
+    "fats": 0.2,
+    "carbs": 3.9,
+    "price_per_100g": 4.5,
+    "portion_g": 180,
+    "meal_types": [
+      "lunch",
+      "dinner",
+      "snack"
+    ],
+    "fits": [
+      "eggs",
+      "chicken",
+      "turkey",
+      "tuna",
+      "sardines",
+      "bread",
+      "onion",
+      "cucumber",
+      "pasta",
+      "avocado",
+      "cheese",
+      "spinach"
+    ],
+    "best_suit": [
+      "eggs",
+      "chicken",
+      "avocado"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "oats"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "broccoli",
+      "carrot",
+      "cabbage",
+      "sunflower_oil"
+    ],
+    "cook_info": {
+      "method": "Вимити, нарізати. Подавати свіжими або обсмажити 2-3 хв",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "cucumber",
+    "name": "Огірок",
+    "category": "vegetable",
+    "calories": 15,
+    "proteins": 0.65,
+    "fats": 0.1,
+    "carbs": 3.6,
+    "price_per_100g": 3.5,
+    "portion_g": 150,
+    "meal_types": [
+      "lunch",
+      "dinner",
+      "snack"
+    ],
+    "fits": [
+      "eggs",
+      "tuna",
+      "bread",
+      "tomatoes",
+      "chicken",
+      "turkey",
+      "avocado",
+      "cottage_cheese"
+    ],
+    "best_suit": [
+      "eggs",
+      "tomatoes",
+      "avocado"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "oats"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "pasta",
+      "broccoli",
+      "onion",
+      "carrot",
+      "sunflower_oil"
+    ],
+    "cook_info": {
+      "method": "Вимити, нарізати тонкими кільцями або кубиками",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "carrot",
+    "name": "Морква",
+    "category": "vegetable",
+    "calories": 41,
+    "proteins": 0.9,
+    "fats": 0.2,
+    "carbs": 9.6,
+    "price_per_100g": 2.0,
+    "portion_g": 130,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "beef",
+      "rice",
+      "buckwheat",
+      "onion",
+      "sunflower_oil",
+      "lentils"
+    ],
+    "best_suit": [
+      "chicken",
+      "rice",
+      "beef"
+    ],
+    "conflicts": [
+      "milk",
+      "yogurt",
+      "sardines"
+    ],
+    "neutral": [
+      "pasta",
+      "broccoli",
+      "tomatoes",
+      "cucumber",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Очистити, нарізати або натерти. Варити 10-15 хв або тушкувати 8-10 хв",
+      "time_min": 15
+    }
+  },
+  {
+    "key": "broccoli",
+    "name": "Броколі",
+    "category": "vegetable",
+    "calories": 34,
+    "proteins": 2.8,
+    "fats": 0.4,
+    "carbs": 6.6,
+    "price_per_100g": 5.0,
+    "portion_g": 200,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "salmon",
+      "eggs",
+      "rice",
+      "onion",
+      "sunflower_oil",
+      "cheese"
+    ],
+    "best_suit": [
+      "chicken",
+      "hake",
+      "salmon"
+    ],
+    "conflicts": [
+      "milk",
+      "sardines"
+    ],
+    "neutral": [
+      "pasta",
+      "buckwheat",
+      "tomatoes",
+      "cucumber",
+      "carrot",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Розібрати на суцвіття, варити 5-7 хв або обсмажити 5-6 хв",
+      "time_min": 7
+    }
+  },
+  {
+    "key": "spinach",
+    "name": "Шпинат",
+    "category": "vegetable",
+    "calories": 23,
+    "proteins": 2.9,
+    "fats": 0.4,
+    "carbs": 3.6,
+    "price_per_100g": 6.0,
+    "portion_g": 130,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "eggs",
+      "chicken",
+      "salmon",
+      "turkey",
+      "tomatoes",
+      "avocado",
+      "cottage_cheese",
+      "cheese",
+      "mushrooms"
+    ],
+    "best_suit": [
+      "eggs",
+      "salmon",
+      "avocado"
+    ],
+    "conflicts": [
+      "milk",
+      "sardines"
+    ],
+    "neutral": [
+      "rice",
+      "pasta",
+      "buckwheat",
+      "onion",
+      "carrot"
+    ],
+    "cook_info": {
+      "method": "Вимити, обсмажити з часником 2-3 хв або додавати свіжим у салат",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "bell_pepper",
+    "name": "Болгарський перець",
+    "category": "vegetable",
+    "calories": 27,
+    "proteins": 0.9,
+    "fats": 0.2,
+    "carbs": 6.0,
+    "price_per_100g": 5.0,
+    "portion_g": 150,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "eggs",
+      "tuna",
+      "tomatoes",
+      "onion",
+      "pasta",
+      "rice",
+      "shrimp"
+    ],
+    "best_suit": [
+      "chicken",
+      "eggs",
+      "shrimp"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir"
+    ],
+    "neutral": [
+      "buckwheat",
+      "broccoli",
+      "carrot",
+      "cabbage",
+      "mushrooms"
+    ],
+    "cook_info": {
+      "method": "Очистити від насіння, нарізати. Обсмажити 5-7 хв або подавати свіжим",
+      "time_min": 7
+    }
+  },
+  {
+    "key": "mushrooms",
+    "name": "Печериці",
+    "category": "vegetable",
+    "calories": 22,
+    "proteins": 3.1,
+    "fats": 0.3,
+    "carbs": 3.3,
+    "price_per_100g": 7.0,
+    "portion_g": 150,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "eggs",
+      "chicken",
+      "turkey",
+      "beef",
+      "buckwheat",
+      "pasta",
+      "rice",
+      "onion",
+      "spinach",
+      "cheese"
+    ],
+    "best_suit": [
+      "eggs",
+      "beef",
+      "buckwheat"
+    ],
+    "conflicts": [
+      "milk",
+      "yogurt"
+    ],
+    "neutral": [
+      "broccoli",
+      "tomatoes",
+      "carrot",
+      "cabbage"
+    ],
+    "cook_info": {
+      "method": "Очистити, нарізати пластинками, обсмажити на пательні 7-10 хв до золотистого кольору",
+      "time_min": 10
+    }
+  },
+  {
+    "key": "avocado",
+    "name": "Авокадо",
+    "category": "fat",
+    "calories": 160,
+    "proteins": 2.0,
+    "fats": 14.7,
+    "carbs": 8.5,
+    "price_per_100g": 15.0,
+    "portion_g": 80,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "snack"
+    ],
+    "fits": [
+      "eggs",
+      "bread",
+      "tuna",
+      "tomatoes",
+      "cucumber",
+      "salmon",
+      "shrimp",
+      "spinach",
+      "lemon"
+    ],
+    "best_suit": [
+      "eggs",
+      "tuna",
+      "salmon"
+    ],
+    "conflicts": [
+      "milk",
+      "yogurt",
+      "oats"
+    ],
+    "neutral": [
+      "rice",
+      "pasta",
+      "chicken",
+      "turkey",
+      "cheese"
+    ],
+    "cook_info": {
+      "method": "Розрізати навпіл, видалити кісточку, очистити від шкірки, нарізати",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "cheese",
+    "name": "Твердий сир",
+    "category": "dairy",
+    "calories": 350,
+    "proteins": 25.0,
+    "fats": 27.0,
+    "carbs": 0.0,
+    "price_per_100g": 18.0,
+    "portion_g": 40,
+    "meal_types": [
+      "breakfast",
+      "lunch",
+      "snack"
+    ],
+    "fits": [
+      "eggs",
+      "bread",
+      "pasta",
+      "tomatoes",
+      "spinach",
+      "mushrooms",
+      "avocado"
+    ],
+    "best_suit": [
+      "eggs",
+      "bread",
+      "pasta"
+    ],
+    "conflicts": [
+      "tuna",
+      "sardines",
+      "kefir"
+    ],
+    "neutral": [
+      "chicken",
+      "turkey",
+      "cucumber",
+      "onion"
+    ],
+    "cook_info": {
+      "method": "Нарізати пластинками або натерти на тертці",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "onion",
+    "name": "Цибуля",
+    "category": "vegetable",
+    "calories": 40,
+    "proteins": 1.1,
+    "fats": 0.1,
+    "carbs": 9.3,
+    "price_per_100g": 1.5,
+    "portion_g": 80,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "tuna",
+      "sardines",
+      "eggs",
+      "tomatoes",
+      "rice",
+      "buckwheat",
+      "pasta",
+      "sunflower_oil",
+      "beef",
+      "mushrooms",
+      "lentils"
+    ],
+    "best_suit": [
+      "chicken",
+      "turkey",
+      "beef"
+    ],
+    "conflicts": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "oats"
+    ],
+    "neutral": [
+      "broccoli",
+      "carrot",
+      "cucumber",
+      "cabbage",
+      "bread"
+    ],
+    "cook_info": {
+      "method": "Очистити, нарізати кубиками, обсмажити на пательні 5-7 хв до м'якості",
+      "time_min": 7
+    }
+  },
+  {
+    "key": "cabbage",
+    "name": "Капуста",
+    "category": "vegetable",
+    "calories": 27,
+    "proteins": 1.8,
+    "fats": 0.1,
+    "carbs": 5.8,
+    "price_per_100g": 1.5,
+    "portion_g": 180,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "eggs",
+      "carrot",
+      "onion",
+      "sunflower_oil"
+    ],
+    "best_suit": [
+      "chicken",
+      "carrot"
+    ],
+    "conflicts": [
+      "milk",
+      "sardines",
+      "tuna"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "pasta",
+      "tomatoes",
+      "cucumber",
+      "broccoli"
+    ],
+    "cook_info": {
+      "method": "Нашаткувати, тушкувати 10-15 хв з олією або подавати свіжою у салаті",
+      "time_min": 15
+    }
+  },
+  {
+    "key": "apples",
+    "name": "Яблука",
+    "category": "fruit",
+    "calories": 52,
+    "proteins": 0.3,
+    "fats": 0.2,
+    "carbs": 13.8,
+    "price_per_100g": 3.0,
+    "portion_g": 150,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "yogurt",
+      "kefir",
+      "cottage_cheese",
+      "milk",
+      "peanut_butter",
+      "nuts_mix"
+    ],
+    "best_suit": [
+      "oats",
+      "cottage_cheese",
+      "yogurt"
+    ],
+    "conflicts": [
+      "chicken",
+      "eggs",
+      "tuna",
+      "sardines",
+      "beef"
+    ],
+    "neutral": [
+      "bread",
+      "bananas",
+      "honey"
+    ],
+    "cook_info": {
+      "method": "Вимити, нарізати часточками або кубиками. Серцевину видалити",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "bananas",
+    "name": "Банани",
+    "category": "fruit",
+    "calories": 89,
+    "proteins": 1.1,
+    "fats": 0.3,
+    "carbs": 22.8,
+    "price_per_100g": 4.5,
+    "portion_g": 150,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "milk",
+      "yogurt",
+      "cottage_cheese",
+      "kefir",
+      "peanut_butter",
+      "nuts_mix"
+    ],
+    "best_suit": [
+      "oats",
+      "yogurt",
+      "peanut_butter"
+    ],
+    "conflicts": [
+      "chicken",
+      "eggs",
+      "tuna",
+      "sardines",
+      "beef"
+    ],
+    "neutral": [
+      "bread",
+      "apples",
+      "honey"
+    ],
+    "cook_info": {
+      "method": "Очистити, нарізати кільцями або використовувати цілими",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "strawberries",
+    "name": "Полуниця",
+    "category": "fruit",
+    "calories": 32,
+    "proteins": 0.7,
+    "fats": 0.3,
+    "carbs": 7.7,
+    "price_per_100g": 8.0,
+    "portion_g": 150,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "cottage_cheese",
+      "oats",
+      "kefir",
+      "granola",
+      "honey"
+    ],
+    "best_suit": [
+      "yogurt",
+      "cottage_cheese"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna"
+    ],
+    "neutral": [
+      "milk",
+      "apples",
+      "bananas",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Вимити, видалити хвостики, нарізати навпіл або подавати цілими",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "blueberries",
+    "name": "Чорниця",
+    "category": "fruit",
+    "calories": 57,
+    "proteins": 0.7,
+    "fats": 0.3,
+    "carbs": 14.5,
+    "price_per_100g": 12.0,
+    "portion_g": 100,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "oats",
+      "cottage_cheese",
+      "kefir",
+      "granola",
+      "honey"
+    ],
+    "best_suit": [
+      "yogurt",
+      "oats",
+      "granola"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna"
+    ],
+    "neutral": [
+      "milk",
+      "apples",
+      "bananas",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Вимити холодною водою, підсушити. Подавати свіжою",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "berries_mix",
+    "name": "Ягідна суміш",
+    "category": "fruit",
+    "calories": 45,
+    "proteins": 0.7,
+    "fats": 0.2,
+    "carbs": 11.0,
+    "price_per_100g": 9.0,
+    "portion_g": 100,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "kefir",
+      "oats",
+      "cottage_cheese",
+      "granola",
+      "honey"
+    ],
+    "best_suit": [
+      "yogurt",
+      "kefir",
+      "granola"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna",
+      "eggs"
+    ],
+    "neutral": [
+      "milk",
+      "apples",
+      "bananas",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Розморозити при кімнатній температурі 15-20 хв або використовувати заморожені у смузі",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "granola",
+    "name": "Гранола",
+    "category": "grain",
+    "calories": 380,
+    "proteins": 8.0,
+    "fats": 12.0,
+    "carbs": 60.0,
+    "price_per_100g": 12.0,
+    "portion_g": 60,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "milk",
+      "kefir",
+      "berries_mix",
+      "blueberries",
+      "strawberries",
+      "honey"
+    ],
+    "best_suit": [
+      "yogurt",
+      "berries_mix"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna",
+      "eggs"
+    ],
+    "neutral": [
+      "cottage_cheese",
+      "apples",
+      "bananas",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Відміряти порцію, залити йогуртом або молоком. Настояти 2-3 хв",
+      "time_min": 3
+    }
+  },
+  {
+    "key": "muesli",
+    "name": "Мюслі",
+    "category": "grain",
+    "calories": 340,
+    "proteins": 9.0,
+    "fats": 6.0,
+    "carbs": 65.0,
+    "price_per_100g": 8.0,
+    "portion_g": 60,
+    "meal_types": [
+      "breakfast"
+    ],
+    "fits": [
+      "milk",
+      "kefir",
+      "yogurt",
+      "apples",
+      "bananas",
+      "berries_mix"
+    ],
+    "best_suit": [
+      "milk",
+      "yogurt"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna",
+      "eggs"
+    ],
+    "neutral": [
+      "cottage_cheese",
+      "honey",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Залити молоком або кефіром, настояти 5-10 хв для розм'якшення",
+      "time_min": 10
+    }
+  },
+  {
+    "key": "corn_flakes",
+    "name": "Кукурудзяні пластівці",
+    "category": "grain",
+    "calories": 357,
+    "proteins": 7.0,
+    "fats": 1.0,
+    "carbs": 79.0,
+    "price_per_100g": 5.0,
+    "portion_g": 50,
+    "meal_types": [
+      "breakfast"
+    ],
+    "fits": [
+      "milk",
+      "yogurt",
+      "kefir",
+      "bananas",
+      "berries_mix"
+    ],
+    "best_suit": [
+      "milk",
+      "bananas"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna"
+    ],
+    "neutral": [
+      "honey",
+      "apples"
+    ],
+    "cook_info": {
+      "method": "Відміряти порцію, залити молоком. Подавати одразу",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "honey",
+    "name": "Мед",
+    "category": "other",
+    "calories": 304,
+    "proteins": 0.3,
+    "fats": 0.0,
+    "carbs": 82.0,
+    "price_per_100g": 15.0,
+    "portion_g": 15,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "yogurt",
+      "cottage_cheese",
+      "kefir",
+      "granola",
+      "berries_mix",
+      "apples",
+      "bananas"
+    ],
+    "best_suit": [
+      "cottage_cheese",
+      "yogurt",
+      "oats"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna",
+      "eggs"
+    ],
+    "neutral": [
+      "bread",
+      "milk",
+      "nuts_mix"
+    ],
+    "cook_info": {
+      "method": "Відміряти 1 ст.л., додати зверху на страву або розмішати у напої",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "nuts_mix",
+    "name": "Горіхова суміш",
+    "category": "fat",
+    "calories": 580,
+    "proteins": 15.0,
+    "fats": 50.0,
+    "carbs": 20.0,
+    "price_per_100g": 20.0,
+    "portion_g": 30,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "cottage_cheese",
+      "oats",
+      "apples",
+      "bananas",
+      "berries_mix",
+      "honey"
+    ],
+    "best_suit": [
+      "yogurt",
+      "apples",
+      "oats"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna"
+    ],
+    "neutral": [
+      "bread",
+      "milk",
+      "kefir"
+    ],
+    "cook_info": {
+      "method": "Відміряти порцію, за бажанням підсмажити на сухій пательні 3-4 хв для аромату",
+      "time_min": 4
+    }
+  },
+  {
+    "key": "peanut_butter",
+    "name": "Арахісова паста",
+    "category": "fat",
+    "calories": 588,
+    "proteins": 25.0,
+    "fats": 50.0,
+    "carbs": 20.0,
+    "price_per_100g": 14.0,
+    "portion_g": 30,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "oats",
+      "bananas",
+      "apples",
+      "bread",
+      "cottage_cheese"
+    ],
+    "best_suit": [
+      "oats",
+      "bananas",
+      "bread"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna",
+      "eggs"
+    ],
+    "neutral": [
+      "milk",
+      "yogurt",
+      "honey"
+    ],
+    "cook_info": {
+      "method": "Перемішати у банці (якщо розшарувалась), відміряти 1-2 ст.л.",
+      "time_min": 1
+    }
+  },
+  {
+    "key": "pumpkin_seeds",
+    "name": "Гарбузове насіння",
+    "category": "fat",
+    "calories": 446,
+    "proteins": 19.0,
+    "fats": 19.0,
+    "carbs": 54.0,
+    "price_per_100g": 10.0,
+    "portion_g": 30,
+    "meal_types": [
+      "breakfast",
+      "snack"
+    ],
+    "fits": [
+      "yogurt",
+      "oats",
+      "cottage_cheese",
+      "granola"
+    ],
+    "best_suit": [
+      "yogurt",
+      "oats"
+    ],
+    "conflicts": [
+      "chicken",
+      "beef",
+      "tuna"
+    ],
+    "neutral": [
+      "bread",
+      "milk",
+      "apples",
+      "honey"
+    ],
+    "cook_info": {
+      "method": "Відміряти порцію, за бажанням підсмажити на сухій пательні 3-4 хв",
+      "time_min": 4
+    }
+  },
+  {
+    "key": "lemon",
+    "name": "Лимон",
+    "category": "fruit",
+    "calories": 29,
+    "proteins": 1.1,
+    "fats": 0.3,
+    "carbs": 9.3,
+    "price_per_100g": 5.0,
+    "portion_g": 30,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "salmon",
+      "hake",
+      "shrimp",
+      "tuna",
+      "chicken",
+      "broccoli",
+      "spinach",
+      "avocado"
+    ],
+    "best_suit": [
+      "salmon",
+      "hake",
+      "shrimp"
+    ],
+    "conflicts": [
+      "milk",
+      "yogurt",
+      "kefir"
+    ],
+    "neutral": [
+      "rice",
+      "buckwheat",
+      "tomatoes",
+      "cucumber"
+    ],
+    "cook_info": {
+      "method": "Вимити, розрізати, вичавити сік. Прибрати кісточки",
+      "time_min": 2
+    }
+  },
+  {
+    "key": "sunflower_oil",
+    "name": "Соняшникова олія",
+    "category": "fat",
+    "calories": 884,
+    "proteins": 0.0,
+    "fats": 100.0,
+    "carbs": 0.0,
+    "price_per_100g": 5.0,
+    "portion_g": 15,
+    "meal_types": [
+      "lunch",
+      "dinner"
+    ],
+    "fits": [
+      "chicken",
+      "turkey",
+      "hake",
+      "beef",
+      "eggs",
+      "rice",
+      "buckwheat",
+      "pasta",
+      "tomatoes",
+      "broccoli",
+      "onion",
+      "carrot",
+      "cabbage",
+      "spinach",
+      "mushrooms"
+    ],
+    "best_suit": [
+      "chicken",
+      "broccoli",
+      "beef"
+    ],
+    "conflicts": [
+      "milk",
+      "oats",
+      "yogurt",
+      "kefir"
+    ],
+    "neutral": [
+      "bread",
+      "tuna",
+      "sardines",
+      "cucumber",
+      "apples",
+      "bananas"
+    ],
+    "cook_info": {
+      "method": "Відміряти потрібну кількість, розігріти на пательні перед смаженням",
+      "time_min": 2
+    }
+  }
+]

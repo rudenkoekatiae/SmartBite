@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMeal } from '../meal-context';
-import { ShoppingBag, ChevronRight, Info } from 'lucide-react';
+import { ShoppingBag, ChevronRight } from 'lucide-react';
 
 export const Shopping = () => {
   const { plan } = useMeal();
@@ -17,27 +17,60 @@ export const Shopping = () => {
     );
   }
 
+  const totalCal   = plan.weekly_totals.cal;
+  const totalPro   = plan.weekly_totals.pro;
+  const budgetUsed = plan.weekly_totals.cost_est;
+
   return (
     <div className="px-6 animate-in slide-in-from-bottom-4 duration-500">
       <header className="mb-6">
         <h1 className="text-2xl font-black text-green-900">Grocery List</h1>
-        <div className="flex items-center gap-2 mt-2">
-          <p className="text-sm font-bold text-green-600">Total Est: ₴{Math.round(plan.shopping_total_uah_est)}</p>
+        <div className="flex items-center gap-2 mt-2 flex-wrap">
+          <p className="text-sm font-bold text-green-600">
+            Total est: ₴{Math.round(plan.shopping_total_uah_est)}
+          </p>
           <div className="w-1 h-1 bg-green-300 rounded-full" />
-          <p className="text-sm font-bold text-green-600">{plan.shopping_list.length} Items</p>
+          <p className="text-sm font-bold text-green-600">
+            {plan.shopping_list.length} items
+          </p>
+          <div className="w-1 h-1 bg-green-300 rounded-full" />
+          <p className="text-sm font-bold text-green-600">
+            Budget: ₴{Math.round(budgetUsed)} / ₴{plan.week_budget_uah}
+          </p>
         </div>
       </header>
 
+      {/* Weekly summary strip */}
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        {[
+          { label: 'Kcal / week', val: Math.round(totalCal) },
+          { label: 'Protein / week', val: Math.round(totalPro) + 'g' },
+          { label: 'Budget left', val: '₴' + Math.round(plan.week_budget_uah - budgetUsed) },
+        ].map(s => (
+          <div key={s.label} className="bg-white rounded-2xl p-3 text-center border border-green-50 shadow-sm">
+            <p className="text-[9px] font-black text-green-600/50 uppercase tracking-widest">{s.label}</p>
+            <p className="text-sm font-black text-green-900">{s.val}</p>
+          </div>
+        ))}
+      </div>
+
       <div className="space-y-3 pb-8">
-        {plan.shopping_list.map((item, idx: number) => (
-          <div key={idx} className="bg-white rounded-2xl p-4 shadow-sm border border-green-50 flex items-center justify-between group hover:border-green-300 transition-all">
+        {plan.shopping_list.map((item, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-2xl p-4 shadow-sm border border-green-50 flex items-center justify-between group hover:border-green-300 transition-all"
+          >
             <div className="flex-1">
-              <p className="text-xs font-black text-green-600/50 uppercase tracking-tighter mb-0.5">{item.ingredient}</p>
-              <h3 className="text-sm font-bold text-green-900 line-clamp-1">{item.grams_needed}g needed</h3>
-              <p className="text-[10px] font-bold text-green-700/60 mt-1">Used {item.uses_in_week}x this week</p>
+              {/* Українська назва з нового бекенду */}
+              <p className="text-sm font-bold text-green-900">{item.name_ua}</p>
+              <p className="text-xs text-green-600/60 mt-0.5">
+                {item.grams_needed}g · used {item.uses_in_week}× this week
+              </p>
             </div>
             <div className="text-right flex items-center gap-3">
-              <span className="text-sm font-black text-green-900">₴{item.cost_uah_est.toFixed(2)}</span>
+              <span className="text-sm font-black text-green-900">
+                ₴{item.cost_uah_est.toFixed(2)}
+              </span>
               <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition-all">
                 <ChevronRight size={18} />
               </div>

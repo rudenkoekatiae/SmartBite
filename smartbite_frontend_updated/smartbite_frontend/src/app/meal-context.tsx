@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { mealApi, WeekPlanResult } from './services/meal-api';
 import { Wand2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -24,17 +24,33 @@ interface MealContextType {
 
 const MealContext = createContext<MealContextType | undefined>(undefined);
 
+// Локальний розрахунок TDEE як fallback (якщо бекенд недоступний)
+function localCalcTdee(profile: UserProfile): number {
+  const s = profile.sex === 'm' ? 5 : -161;
+  const bmr = 10 * profile.weight + 6.25 * profile.height - 5 * profile.age + s;
+  let tdee = bmr * 1.4;
+  if (profile.goal === 'lose') tdee -= 500;
+  if (profile.goal === 'gain') tdee += 300;
+  return Math.round(Math.max(tdee, profile.sex === 'f' ? 1200 : 1500));
+}
+
 export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [profile, setProfile] = useState<UserProfile>({
-    sex: 'm', age: 25, height: 180, weight: 75, goal: 'maintain', budget: 1500, mealsPerDay: 3
+    sex: 'm', age: 25, height: 180, weight: 75,
+    goal: 'maintain', budget: 1500, mealsPerDay: 3,
   });
   const [plan, setPlan] = useState<WeekPlanResult | null>(null);
   const [dailyCal, setDailyCal] = useState<number>(2000);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Calculate daily calories when profile changes
+  // Лічильник генерацій — кожного разу передаємо новий seed щоб план змінювався
+  const genCountRef = useRef(0);
+
+  // Перераховуємо TDEE при зміні профілю
   useEffect(() => {
-    const calculateDailyCal = async () => {
+    let cancelled = false;
+
+    const fetchCal = async () => {
       try {
         const result = await mealApi.calculateCalories({
           sex: profile.sex,
@@ -43,43 +59,42 @@ export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children
           weight_kg: profile.weight,
           goal: profile.goal,
         });
-        setDailyCal(result.daily_calories);
-      } catch (error) {
-        console.error('Error calculating calories:', error);
-        // Fallback to simple calculation
-        const bmr = profile.sex === 'm' 
-          ? 10 * profile.weight + 6.25 * profile.height - 5 * profile.age + 5
-          : 10 * profile.weight + 6.25 * profile.height - 5 * profile.age - 161;
-        let tdee = bmr * 1.4;
-        if (profile.goal === 'lose') tdee -= 500;
-        if (profile.goal === 'gain') tdee += 300;
-        setDailyCal(Math.round(tdee));
+        if (!cancelled) setDailyCal(result.daily_calories);
+      } catch {
+        // Бекенд недоступний — рахуємо локально
+        if (!cancelled) setDailyCal(localCalcTdee(profile));
       }
     };
 
-    calculateDailyCal();
+    fetchCal();
+    return () => { cancelled = true; };
   }, [profile]);
 
   const generatePlan = async () => {
     setIsGenerating(true);
+    genCountRef.current += 1;
+
+    // Кожна генерація — новий випадковий seed → інший план
+    const seed = Math.floor(Math.random() * 1_000_000);
+
     try {
       const result = await mealApi.generatePlan({
         week_budget_uah: profile.budget,
         daily_cal_target: dailyCal,
         meals_per_day: profile.mealsPerDay,
         days: 7,
-        max_repeat: 2,
+        cal_tolerance: 150,
+        seed,
       });
 
       setPlan(result);
-      toast.success("Meal plan generated successfully!", {
-        description: `Optimized for ${dailyCal} kcal and ₴${profile.budget} budget.`,
-        icon: <Wand2 className="text-green-600" size={16} />
+      toast.success('Meal plan generated!', {
+        description: `${dailyCal} kcal/day · ₴${profile.budget} budget`,
+        icon: <Wand2 className="text-green-600" size={16} />,
       });
     } catch (error) {
-      console.error('Error generating meal plan:', error);
-      toast.error("Failed to generate meal plan", {
-        description: error instanceof Error ? error.message : "Please try again later.",
+      toast.error('Failed to generate meal plan', {
+        description: error instanceof Error ? error.message : 'Is the backend running?',
       });
     } finally {
       setIsGenerating(false);
@@ -94,7 +109,7 @@ export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children
 };
 
 export const useMeal = () => {
-  const context = useContext(MealContext);
-  if (!context) throw new Error('useMeal must be used within MealProvider');
-  return context;
+  const ctx = useContext(MealContext);
+  if (!ctx) throw new Error('useMeal must be used within MealProvider');
+  return ctx;
 };

@@ -1,5 +1,6 @@
-// API service for backend meal planning
-const BASE_URL = `http://localhost:8000/make-server-fd5d4174`;
+// API service for SmartBite Python backend
+// BASE_URL читається з .env (VITE_API_URL) або fallback на localhost
+const BASE_URL = (import.meta as any).env?.VITE_API_URL ?? 'http://localhost:8000/make-server-fd5d4174';
 
 interface CalcCaloriesParams {
   sex: string;
@@ -15,75 +16,78 @@ interface GeneratePlanParams {
   meals_per_day?: number;
   skip_meal?: string | null;
   days?: number;
-  max_repeat?: number;
-  budget_step?: number;
-  cal_step?: number;
+  cal_tolerance?: number;
+  seed?: number | null;
 }
 
 export interface MealItem {
   name: string;
   type: string;
+  slot: string;
+  day: number;
   ingredients: string[];
-  cost: number;
+  compat_score: number;
   cal: number;
   pro: number;
   fat: number;
   carb: number;
+  cost: number;
+}
+
+export interface DayPlan {
+  day: number;
+  meals: MealItem[];
+  day_cal: number;
+  day_cost: number;
+  cal_ok: boolean;
+}
+
+export interface ShoppingItem {
+  ingredient: string;
+  name_ua: string;
+  grams_needed: number;
+  uses_in_week: number;
+  cost_uah_est: number;
 }
 
 export interface WeekPlanResult {
   status: string;
   daily_cal_target: number;
+  cal_tolerance: number;
   week_budget_uah: number;
   meals_per_day: number;
   day_slots: string[];
-  max_repeat_used: number;
-  weekly_totals_servings_est: {
-    cost_est_servings: number;
+  days: number;
+  weekly_totals: {
+    cost_est: number;
     cal: number;
     pro: number;
     fat: number;
     carb: number;
   };
   shopping_total_uah_est: number;
-  week_plan: MealItem[][];
-  shopping_list: Array<{
-    ingredient: string;
-    grams_needed: number;
-    uses_in_week: number;
-    cost_uah_est: number;
-  }>;
+  week_plan: DayPlan[];
+  shopping_list: ShoppingItem[];
+  warning?: string;
 }
 
-async function apiCall(endpoint: string, method: string = 'GET', body?: any) {
+async function apiCall(endpoint: string, method: string = 'GET', body?: unknown) {
   const url = `${BASE_URL}${endpoint}`;
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  };
-
   const options: RequestInit = {
     method,
-    headers,
+    headers: { 'Content-Type': 'application/json' },
   };
-
   if (body && method !== 'GET') {
     options.body = JSON.stringify(body);
   }
 
-  try {
-    const response = await fetch(url, options);
-    const data = await response.json();
+  const response = await fetch(url, options);
+  const data = await response.json();
 
-    if (!response.ok) {
-      console.error(`API error at ${endpoint}:`, data);
-      throw new Error(data.error || `Request failed with status ${response.status}`);
-    }
-
-    return data;
-  } catch (error) {
-    console.error(`API call failed for ${endpoint}:`, error);
-    throw error;
+  if (!response.ok) {
+    throw new Error(data.detail ?? data.error ?? `HTTP ${response.status}`);
   }
+  return data;
 }
 
 export const mealApi = {
@@ -95,12 +99,8 @@ export const mealApi = {
     return apiCall('/generate-plan', 'POST', params);
   },
 
-  async getProducts() {
-    return apiCall('/products', 'GET');
-  },
-
-  async getRecipes() {
-    return apiCall('/recipes', 'GET');
+  async getIngredients() {
+    return apiCall('/ingredients', 'GET');
   },
 
   async healthCheck() {
