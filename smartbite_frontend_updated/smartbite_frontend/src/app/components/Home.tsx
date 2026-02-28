@@ -80,9 +80,12 @@ interface MealDetailModalProps {
   onClose: () => void;
 }
 
+const DEFAULT_COOK: CookInfo = { method: 'Підготувати за необхідністю', time_min: 5 };
+
 const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, ingredientDetails, onClose }) => {
-  // Час приготування = максимум серед всіх інгредієнтів страви
-  const cookTime = Math.max(...ingredientDetails.map(d => d.cook_info?.time_min ?? 0), 5);
+  const cookTime = ingredientDetails.length > 0
+    ? Math.max(...ingredientDetails.map(d => d.cook_info?.time_min ?? 5), 5)
+    : 15;
 
   return (
     <motion.div
@@ -163,6 +166,15 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, i
               <h3 className="text-sm font-black text-green-900">Інгредієнти та приготування</h3>
             </div>
 
+            {ingredientDetails.length === 0 && (
+              <div className="space-y-2">
+                {meal.ingredients.map((key, idx) => (
+                  <div key={idx} className="bg-white rounded-2xl p-3 border border-green-50">
+                    <p className="text-sm font-bold text-green-900">{key}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="space-y-3">
               {ingredientDetails.map((ing, idx) => (
                 <div key={idx} className="bg-white rounded-2xl p-3.5 border border-green-50">
@@ -175,12 +187,12 @@ const MealDetailModal: React.FC<MealDetailModalProps> = ({ meal, illustration, i
                       <p className="text-xs font-black text-green-800">{Math.round(ing.calories * ing.portion_g / 100)} ккал</p>
                       <div className="flex items-center gap-1 justify-end mt-0.5">
                         <Clock size={10} className="text-green-500" />
-                        <p className="text-[10px] text-green-600/60">{ing.cook_info.time_min} хв</p>
+                        <p className="text-[10px] text-green-600/60">{(ing.cook_info ?? DEFAULT_COOK).time_min} хв</p>
                       </div>
                     </div>
                   </div>
                   <p className="text-[11px] text-green-700/70 leading-relaxed">
-                    {ing.cook_info.method}
+                    {(ing.cook_info ?? DEFAULT_COOK).method}
                   </p>
                   {/* Міні-макро рядок */}
                   <div className="flex gap-3 mt-2">

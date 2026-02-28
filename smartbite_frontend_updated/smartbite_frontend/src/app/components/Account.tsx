@@ -1,16 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMeal } from '../meal-context';
-import { User, Ruler, Weight, Target, Wallet, UtensilsCrossed } from 'lucide-react';
+import { User, Ruler, Weight, Target, Wallet, UtensilsCrossed, AlertCircle } from 'lucide-react';
+
+// ── Правила валідації ─────────────────────────────────────────────────────────
+
+const RULES = {
+  age:        { min: 10,    max: 120,   label: 'Вік',           unit: 'р.' },
+  height:     { min: 100,   max: 250,   label: 'Зріст',         unit: 'см' },
+  weight:     { min: 30,    max: 300,   label: 'Вага',          unit: 'кг' },
+  budget:     { min: 200,   max: 30000, label: 'Бюджет',        unit: '₴' },
+  mealsPerDay:{ min: 2,     max: 5,     label: 'Прийомів їжі',  unit: '' },
+};
+
+type FieldKey = keyof typeof RULES;
+
+function validate(key: FieldKey, value: number): string | null {
+  const rule = RULES[key];
+  if (!Number.isFinite(value) || value <= 0) return `Введіть число більше 0`;
+  if (value < rule.min) return `Мінімум ${rule.min} ${rule.unit}`.trim();
+  if (value > rule.max) return `Максимум ${rule.max} ${rule.unit}`.trim();
+  return null;
+}
+
+// ── Компонент числового поля з валідацією ─────────────────────────────────────
+
+interface NumFieldProps {
+  label: string;
+  icon?: React.ReactNode;
+  fieldKey: FieldKey;
+  value: number;
+  onChange: (val: number) => void;
+  placeholder?: string;
+}
+
+const NumField: React.FC<NumFieldProps> = ({ label, icon, fieldKey, value, onChange, placeholder }) => {
+  const [raw, setRaw]     = useState(String(value));
+  const [touched, setTouched] = useState(false);
+
+  const rule = RULES[fieldKey];
+  const parsed = parseFloat(raw);
+  const error  = touched ? validate(fieldKey, parsed) : null;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = e.target.value;
+    setRaw(v);
+    const n = parseFloat(v);
+    if (Number.isFinite(n) && !validate(fieldKey, n)) {
+      onChange(fieldKey === 'mealsPerDay' ? Math.round(n) : n);
+    }
+  };
+
+  return (
+    <div className="space-y-1.5">
+      <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
+        {icon} {label}
+      </label>
+      <input
+        type="number"
+        inputMode="numeric"
+        value={raw}
+        min={rule.min}
+        max={rule.max}
+        placeholder={placeholder}
+        onChange={handleChange}
+        onBlur={() => setTouched(true)}
+        className={`w-full bg-white border rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:outline-none transition-all ${
+          error
+            ? 'border-red-300 focus:ring-2 focus:ring-red-300'
+            : 'border-green-50 focus:ring-2 focus:ring-green-500'
+        }`}
+      />
+      {error && (
+        <p className="text-[10px] font-bold text-red-500 ml-1 flex items-center gap-1">
+          <AlertCircle size={10} /> {error}
+        </p>
+      )}
+    </div>
+  );
+};
+
+// ── Головний компонент ────────────────────────────────────────────────────────
 
 export const Account = () => {
   const { profile, setProfile, dailyCal } = useMeal();
 
-  const update = (key: string, val: any) => {
+  const update = (key: string, val: unknown) => {
     setProfile({ ...profile, [key]: val });
   };
 
   return (
-    <div className="px-6 animate-in slide-in-from-right-4 duration-500">
+    <div className="px-6 animate-in slide-in-from-right-4 duration-500 pb-8">
       <header className="mb-8 flex items-center gap-4">
         <div className="w-16 h-16 rounded-full bg-green-600 flex items-center justify-center text-white shadow-lg border-4 border-white">
           <User size={32} />
@@ -22,66 +101,63 @@ export const Account = () => {
       </header>
 
       <div className="space-y-6">
+
         {/* Sex & Age */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1">Sex</label>
             <div className="flex bg-white rounded-2xl p-1 border border-green-50">
-              <button 
-                onClick={() => update('sex', 'm')}
-                className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${profile.sex === 'm' ? 'bg-green-600 text-white shadow-sm' : 'text-green-900'}`}
-              >MALE</button>
-              <button 
-                onClick={() => update('sex', 'f')}
-                className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${profile.sex === 'f' ? 'bg-green-600 text-white shadow-sm' : 'text-green-900'}`}
-              >FEMALE</button>
+              {(['m', 'f'] as const).map(s => (
+                <button
+                  key={s}
+                  onClick={() => update('sex', s)}
+                  className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${
+                    profile.sex === s ? 'bg-green-600 text-white shadow-sm' : 'text-green-900'
+                  }`}
+                >
+                  {s === 'm' ? 'MALE' : 'FEMALE'}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1">Age</label>
-            <input 
-              type="number" 
-              value={profile.age || ''} 
-              onChange={(e) => update('age', e.target.value === '' ? 0 : parseInt(e.target.value))}
-              className="w-full bg-white border border-green-50 rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
-            />
-          </div>
+
+          <NumField
+            label="Age"
+            fieldKey="age"
+            value={profile.age}
+            onChange={v => update('age', Math.round(v))}
+            placeholder="25"
+          />
         </div>
 
         {/* Height & Weight */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
-              <Ruler size={10} /> Height (cm)
-            </label>
-            <input 
-              type="number" 
-              value={profile.height || ''} 
-              onChange={(e) => update('height', e.target.value === '' ? 0 : parseInt(e.target.value))}
-              className="w-full bg-white border border-green-50 rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
-              <Weight size={10} /> Weight (kg)
-            </label>
-            <input 
-              type="number" 
-              value={profile.weight || ''} 
-              onChange={(e) => update('weight', e.target.value === '' ? 0 : parseInt(e.target.value))}
-              className="w-full bg-white border border-green-50 rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
-            />
-          </div>
+          <NumField
+            label="Height (cm)"
+            icon={<Ruler size={10} />}
+            fieldKey="height"
+            value={profile.height}
+            onChange={v => update('height', Math.round(v))}
+            placeholder="175"
+          />
+          <NumField
+            label="Weight (kg)"
+            icon={<Weight size={10} />}
+            fieldKey="weight"
+            value={profile.weight}
+            onChange={v => update('weight', v)}
+            placeholder="70"
+          />
         </div>
 
-        {/* Goal Selector */}
-        <div className="space-y-2">
+        {/* Goal */}
+        <div className="space-y-1.5">
           <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
             <Target size={10} /> Primary Goal
           </label>
-          <select 
+          <select
             value={profile.goal}
-            onChange={(e) => update('goal', e.target.value)}
+            onChange={e => update('goal', e.target.value)}
             className="w-full bg-white border border-green-50 rounded-2xl py-3 px-4 text-sm font-black text-green-900 appearance-none focus:ring-2 focus:ring-green-500 focus:outline-none"
           >
             <option value="lose">Weight Loss (Cut)</option>
@@ -92,36 +168,36 @@ export const Account = () => {
 
         {/* Budget & Meals */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
-              <Wallet size={10} /> Budget (₴)
-            </label>
-            <input 
-              type="number" 
-              value={profile.budget || ''} 
-              onChange={(e) => update('budget', e.target.value === '' ? 0 : parseInt(e.target.value))}
-              className="w-full bg-white border border-green-50 rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1 flex items-center gap-1">
-              <UtensilsCrossed size={10} /> Meals/Day
-            </label>
-            <input 
-              type="number" 
-              min="2" max="5"
-              value={profile.mealsPerDay || ''} 
-              onChange={(e) => update('mealsPerDay', e.target.value === '' ? 2 : parseInt(e.target.value))}
-              className="w-full bg-white border border-green-50 rounded-2xl py-2 px-4 text-sm font-black text-green-900 focus:ring-2 focus:ring-green-500 focus:outline-none"
-            />
-          </div>
+          <NumField
+            label="Budget (₴)"
+            icon={<Wallet size={10} />}
+            fieldKey="budget"
+            value={profile.budget}
+            onChange={v => update('budget', Math.round(v))}
+            placeholder="1500"
+          />
+          <NumField
+            label="Meals/Day"
+            icon={<UtensilsCrossed size={10} />}
+            fieldKey="mealsPerDay"
+            value={profile.mealsPerDay}
+            onChange={v => update('mealsPerDay', Math.round(v))}
+            placeholder="3"
+          />
         </div>
 
-        <div className="pt-4">
-          <p className="text-[10px] font-bold text-green-600/50 text-center leading-relaxed">
-            Your data is used to calculate personalized nutritional targets using the MSJ formula.
-          </p>
+        {/* Підказки для кожного поля */}
+        <div className="bg-green-50 rounded-2xl p-4 space-y-1.5">
+          {(Object.keys(RULES) as FieldKey[]).map(key => (
+            <p key={key} className="text-[10px] text-green-700/60 font-bold">
+              {RULES[key].label}: від {RULES[key].min} до {RULES[key].max} {RULES[key].unit}
+            </p>
+          ))}
         </div>
+
+        <p className="text-[10px] font-bold text-green-600/50 text-center leading-relaxed pt-2">
+          Your data is used to calculate personalized nutritional targets using the MSJ formula.
+        </p>
       </div>
     </div>
   );
