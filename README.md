@@ -48,7 +48,6 @@ SmartBite addresses these issues by providing ready-made, personalized meal plan
 - Backend: Python
 - Tools: Git, GitHub
 
-
 ## Local Setup
 
 Clone the repository:
@@ -63,9 +62,10 @@ Clone the repository:
 
 ## Team
 
-Kateryna Rudenko
-Sofia Volvach
-Kateryna Zinchuk
-Melaniia Poliuga
+- Kateryna Rudenko
+- Sofia Volvach
+- Kateryna Zinchuk
+- Melaniia Poliuga
+
 
 
