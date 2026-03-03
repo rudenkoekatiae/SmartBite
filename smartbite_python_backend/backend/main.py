@@ -75,6 +75,7 @@ class PlanRequest(BaseModel):
     days: int = 7
     cal_tolerance: float = 150.0
     seed: Optional[int] = None
+    diet: str = "none"
 
     @field_validator("week_budget_uah")
     @classmethod
@@ -144,6 +145,7 @@ def generate_plan(body: PlanRequest):
         days=body.days,
         cal_tolerance=body.cal_tolerance,
         seed=body.seed,
+        diet=body.diet
     )
 
     if result.get("status") != "ok":

@@ -18,6 +18,7 @@ interface GeneratePlanParams {
   days?: number;
   cal_tolerance?: number;
   seed?: number | null;
+  diet?: string;
 }
 
 export interface MealItem {

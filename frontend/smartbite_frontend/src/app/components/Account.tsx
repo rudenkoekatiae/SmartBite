@@ -166,6 +166,23 @@ export const Account = () => {
           </select>
         </div>
 
+        {/* Diet */}
+        <div className="space-y-1.5">
+          <label className="text-[10px] font-black text-green-600 uppercase tracking-widest ml-1">
+            Diet Type
+          </label>
+          <select
+            value={profile.diet}
+            onChange={e => update('diet', e.target.value)}
+            className="w-full bg-white border border-green-50 rounded-2xl py-3 px-4 text-sm font-black text-green-900 appearance-none focus:ring-2 focus:ring-green-500 focus:outline-none"
+          >
+            <option value="none">No restrictions</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="pescatarian">Pescatarian</option>
+          </select>
+        </div>
+
         {/* Budget & Meals */}
         <div className="grid grid-cols-2 gap-4">
           <NumField

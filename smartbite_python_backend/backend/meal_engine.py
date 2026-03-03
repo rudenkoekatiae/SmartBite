@@ -29,6 +29,23 @@ with open(BASE_DIR / "ingredient_graph.json", encoding="utf-8") as f:
 
 INGR_BY_KEY: dict[str, dict] = {p["key"]: p for p in INGREDIENT_GRAPH}
 
+DIET_FORBIDDEN = {
+    "vegan": {
+        "chicken", "turkey", "beef", "pork", "salmon", "shrimp",
+        "tuna", "hake", "sardines", "tuna_fresh", "cod",
+        "eggs", "milk", "kefir", "yogurt", "cottage_cheese",
+        "cheese", "butter", "honey"
+    },
+    "vegetarian": {
+        "chicken", "turkey", "beef", "pork", "salmon", "shrimp",
+        "tuna", "hake", "sardines", "tuna_fresh", "cod"
+    },
+    "pescatarian": {
+        "chicken", "turkey", "beef", "pork"
+    },
+    "none": set()
+}
+
 def calc_daily_calories(
     sex: str, age: int, height_cm: float, weight_kg: float, goal: str
 ) -> int:
@@ -83,12 +100,18 @@ def _generate_meal_combos(
     min_size: int = 2,
     max_size: int = 3,
     min_compat: float = 0.5,
+    diet="none"
 ) -> list[dict]:
     """
     Generate all valid ingredient combinations for a given meal type.
     Filters out combinations with conflicts (compat < min_compat).
     """
-    candidates = [p["key"] for p in INGREDIENT_GRAPH if meal_type in p.get("meal_types", [])]
+    forbidden = DIET_FORBIDDEN.get(diet, set())
+    candidates = [
+        p["key"] for p in INGREDIENT_GRAPH
+        if meal_type in p.get("meal_types", [])
+        and p["key"] not in forbidden
+    ]
 
     combos = []
     for size in range(min_size, max_size + 1):
@@ -343,6 +366,7 @@ def solve_week(
     budget_step: float = 5.0,
     cal_step: float = 25.0,
     seed: Optional[int] = None,
+    diet: str = "none"
 ) -> dict:
     """
     Generate a weekly meal plan.
@@ -353,6 +377,7 @@ def solve_week(
       - Total cost ≤ week_budget_uah
       - Different plans for different seeds (or no seed)
     """
+
     rng = random.Random(seed)
 
     base = ["breakfast", "lunch", "dinner"]
@@ -373,7 +398,7 @@ def solve_week(
 
     pools: dict[str, list[dict]] = {}
     for meal_type in set(day_slots):
-        combos = _generate_meal_combos(meal_type, min_size=2, max_size=4, min_compat=0.3)
+        combos = _generate_meal_combos(meal_type, min_size=2, max_size=4, min_compat=0.3, diet=diet)
         combos = sorted(combos, key=lambda x: x["compat_score"], reverse=True)[:400]
         rng.shuffle(combos)
         pools[meal_type] = combos
