@@ -11,7 +11,6 @@ interface UserProfile {
   goal: 'lose' | 'maintain' | 'gain';
   budget: number;
   mealsPerDay: number;
-  diet: 'none' | 'vegetarian' | 'vegan' | 'pescatarian'
 }
 
 interface MealContextType {
@@ -37,10 +36,9 @@ function localCalcTdee(profile: UserProfile): number {
 
 export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [profile, setProfile] = useState<UserProfile>({
-  sex: 'm', age: 25, height: 180, weight: 75,
-  goal: 'maintain', budget: 1500, mealsPerDay: 3,
-  diet: 'none',
-});
+    sex: 'm', age: 25, height: 180, weight: 75,
+    goal: 'maintain', budget: 1500, mealsPerDay: 3,
+  });
   const [plan, setPlan] = useState<WeekPlanResult | null>(null);
   const [dailyCal, setDailyCal] = useState<number>(2000);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -87,7 +85,6 @@ export const MealProvider: React.FC<{ children: React.ReactNode }> = ({ children
         days: 7,
         cal_tolerance: 150,
         seed,
-        diet: profile.diet
       });
 
       setPlan(result);
